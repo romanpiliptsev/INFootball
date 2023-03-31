@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="com.example.infootball.presentation.fragments.LeaguesFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/leagues"
+        tools:layout="@layout/fragment_leagues"/>
+
+    <TextView
+        android:id="@+id/leagues"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Leagues"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/matches"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_container"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/matches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/favorites"
+        app:layout_constraintStart_toEndOf="@id/leagues"
+        app:layout_constraintTop_toBottomOf="@id/fragment_container"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/favorites"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Favorites"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/matches"
+        app:layout_constraintTop_toBottomOf="@id/fragment_container"
+        android:gravity="center"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
