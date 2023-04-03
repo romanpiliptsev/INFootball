@@ -1,10 +1,13 @@
 package com.example.infootball.domain
 
-import com.example.infootball.data.network.model.LeagueResponseDto
+import com.example.infootball.data.network.model.MatchDto
+import com.example.infootball.data.network.model.MatchesMainResponseDto
+import com.example.infootball.domain.entities.LeagueOfMatchesEntity
+import java.time.LocalDate
 
 interface MainRepository {
 
-    suspend fun getLeagueResponseById(id: Int): LeagueResponseDto
+    suspend fun getMatchesOfLeagueDay(competition: String, date: String): ArrayList<MatchDto>
 
-    suspend fun getLeagueList(idList: List<Int>): List<LeagueResponseDto>
+    suspend fun getLeaguesOfMatches(date: LocalDate): List<LeagueOfMatchesEntity>
 }

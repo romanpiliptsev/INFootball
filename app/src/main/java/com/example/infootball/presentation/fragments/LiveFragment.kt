@@ -1,16 +1,16 @@
 package com.example.infootball.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.infootball.databinding.FragmentFavoritesBinding
+import androidx.fragment.app.Fragment
+import com.example.infootball.databinding.FragmentLiveBinding
 
-class FavoritesFragment : Fragment() {
+class LiveFragment : Fragment() {
 
     private val binding by lazy {
-        FragmentFavoritesBinding.inflate(layoutInflater)
+        FragmentLiveBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
@@ -23,6 +23,6 @@ class FavoritesFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() = FavoritesFragment()
+        fun newInstance() = LiveFragment()
     }
 }

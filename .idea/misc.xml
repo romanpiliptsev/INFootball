@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/drawable-v24/ic_empty_star.xml" value="0.1475" />
         <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/drawable-v24/ic_yellow_star.xml" value="0.1475" />
         <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_favorites.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_leagues.xml" value="0.2" />
-        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_matches.xml" value="0.1" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_live.xml" value="0.1" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_matches.xml" value="0.264" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/fragment_matches_of_league.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/league.xml" value="0.536" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/leagueOfMatches.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/league_of_matches.xml" value="0.4" />
+        <entry key="..\:/Users/romaz/AndroidStudioProjects/INFootball/app/src/main/res/layout/match_item.xml" value="0.264" />
       </map>
     </option>
   </component>

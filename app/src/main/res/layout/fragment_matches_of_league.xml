@@ -4,59 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragments.MatchesFragment">
+    tools:context=".presentation.fragments.MatchesOfLeagueFragment">
 
     <TextView
-        android:id="@+id/today_minus_2"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/today_minus_1"
-        tools:text="01.04"/>
-
-    <TextView
-        android:id="@+id/today_minus_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/today_minus_2"
-        app:layout_constraintRight_toLeftOf="@id/today"
-        tools:text="02.04"/>
-
-    <TextView
-        android:id="@+id/today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/today_minus_1"
-        app:layout_constraintRight_toLeftOf="@id/today_plus_1"
-        tools:text="03.04"
-        android:background="@color/red"/>
-
-    <TextView
-        android:id="@+id/today_plus_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/today"
-        app:layout_constraintRight_toLeftOf="@id/today_plus_2"
-        tools:text="04.04"/>
-
-    <TextView
-        android:id="@+id/today_plus_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/today_plus_1"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="05.04"/>
 
+    <ImageView
+        android:id="@+id/league_logo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        tools:src="@drawable/ic_yellow_star"/>
+
+    <TextView
+        android:id="@+id/league_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/league_logo"
+        app:layout_constraintBottom_toTopOf="@id/flag"
+        app:layout_constraintStart_toEndOf="@id/league_logo"
+        tools:text="La Liga"/>
+
+    <ImageView
+        android:id="@+id/flag"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toEndOf="@id/league_logo"
+        app:layout_constraintTop_toBottomOf="@id/league_name"
+        app:layout_constraintBottom_toBottomOf="@id/league_logo"
+        tools:src="@drawable/ic_yellow_star"/>
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/flag"
+        app:layout_constraintTop_toTopOf="@id/flag"
+        app:layout_constraintBottom_toBottomOf="@id/flag"
+        tools:text="Spain"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_leagues"
+        android:id="@+id/rv_matches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/today"
+        app:layout_constraintTop_toBottomOf="@id/league_logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
@@ -69,7 +67,7 @@
         app:layout_constraintBottom_toTopOf="@id/retry_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/today"
+        app:layout_constraintTop_toBottomOf="@id/date"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
