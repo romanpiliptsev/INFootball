@@ -15,8 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/gl1"
-        tools:text="1"
-        android:textStyle="bold"/>
+        tools:text="1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl1"
@@ -75,8 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/gl2"
         app:layout_constraintRight_toLeftOf="@id/gl3"
-        tools:text="35"
-        android:textStyle="bold" />
+        tools:text="35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl3"
@@ -150,8 +148,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/gl6"
         app:layout_constraintRight_toLeftOf="@id/gl7"
-        tools:text="+77"
-        android:textStyle="bold"/>
+        tools:text="+77"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl7"
@@ -168,7 +165,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/gl7"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="102"
-        android:textStyle="bold"/>
+        tools:text="102"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

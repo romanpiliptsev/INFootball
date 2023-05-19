@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragments.MatchInfoFragment">
+    tools:context=".presentation.fragments.MatchInfoFragment"
+    android:paddingTop="6dp">
 
     <ImageView
         android:id="@+id/whistle"

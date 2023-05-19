@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toStartOf="@id/gl1"
         tools:text="Abdessamad Ezzalzouli"
         android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:textSize="15sp"/>
 
     <ImageView
         android:id="@+id/team_logo"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toStartOf="@id/gl1"
         tools:text="Barcelona"
         android:textStyle="italic"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:textAllCaps="true" />
 
     <androidx.constraintlayout.widget.Guideline

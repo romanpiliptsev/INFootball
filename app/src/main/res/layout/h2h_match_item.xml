@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="7dp">
+    android:layout_marginTop="7dp"
+    android:paddingEnd="5dp"
+    android:paddingStart="5dp">
 
 <!--    <ImageView-->
 <!--        android:id="@+id/star"-->
@@ -44,7 +46,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/away_team_logo"
         app:layout_constraintStart_toEndOf="@+id/date"
-        tools:src="@drawable/ic_yellow_star"/>
+        tools:src="@drawable/ic_yellow_star"
+        android:layout_marginStart="4dp"/>
 
     <ImageView
         android:id="@+id/away_team_logo"
@@ -53,7 +56,8 @@
         app:layout_constraintTop_toBottomOf="@+id/home_team_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date"
-        tools:src="@drawable/ic_yellow_star"/>
+        tools:src="@drawable/ic_yellow_star"
+        android:layout_marginStart="4dp"/>
 
     <TextView
         android:id="@+id/home_team_name"
@@ -64,6 +68,7 @@
         app:layout_constraintStart_toEndOf="@id/home_team_logo"
         tools:text="Barcelona"
         android:textSize="12sp"
+        android:layout_marginStart="2dp"
         />
 
     <TextView
@@ -75,6 +80,7 @@
         app:layout_constraintStart_toEndOf="@id/away_team_logo"
         tools:text="Real Madrid"
         android:textSize="12sp"
+        android:layout_marginStart="2dp"
         />
 
     <TextView

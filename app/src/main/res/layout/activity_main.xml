@@ -15,7 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="INFootball"
         android:textSize="20sp"
-        android:paddingBottom="10dp"/>
+        android:paddingBottom="10dp"
+        android:paddingStart="8dp"
+        android:textStyle="bold"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
@@ -38,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_container"
         android:gravity="center"
-        android:background="@color/red"/>
+        android:background="@color/red"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/lives"
@@ -49,7 +52,8 @@
         app:layout_constraintEnd_toStartOf="@id/leagues"
         app:layout_constraintStart_toEndOf="@id/matches"
         app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/leagues"
@@ -60,7 +64,8 @@
         app:layout_constraintEnd_toStartOf="@id/favorites"
         app:layout_constraintStart_toEndOf="@id/lives"
         app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/favorites"
@@ -71,6 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/leagues"
         app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

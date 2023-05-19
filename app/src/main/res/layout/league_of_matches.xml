@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/flag"
-        android:layout_width="70dp"
+        android:layout_width="55dp"
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:src="@drawable/world_flag"/>
+        tools:src="@drawable/world_flag" />
 
     <ImageView
         android:id="@+id/league_logo"
@@ -22,7 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/flag"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@mipmap/ic_launcher"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/country_name"
@@ -32,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@id/league_name"
         app:layout_constraintLeft_toRightOf="@id/league_logo"
         tools:text="Country"
-        />
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/league_name"
@@ -42,7 +43,8 @@
         app:layout_constraintLeft_toRightOf="@id/league_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="League"
-        />
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/number_of_matches"
@@ -52,6 +54,7 @@
         app:layout_constraintBottom_toTopOf="@id/number_of_live_matches"
         app:layout_constraintRight_toRightOf="parent"
         tools:text="3"
+        android:layout_marginEnd="4dp"
         />
 
     <TextView
@@ -62,6 +65,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="2"
+        android:layout_marginEnd="4dp"
+        android:textColor="@color/green"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,9 @@
         android:text="INFootball"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="8dp"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/flag"

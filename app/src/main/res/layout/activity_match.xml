@@ -10,9 +10,11 @@
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="8dp"
         android:paddingBottom="10dp"
         android:text="INFootball"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +23,10 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="@id/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="5dp"
         tools:src="@drawable/ic_yellow_star" />
 
     <ImageView
@@ -50,21 +52,21 @@
         android:id="@+id/league_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         app:layout_constraintBottom_toTopOf="@id/competition_stage"
         app:layout_constraintStart_toEndOf="@id/league_logo"
         app:layout_constraintTop_toTopOf="@id/flag"
-        tools:text="Spain: La Liga"
-        />
+        tools:text="Spain: La Liga" />
 
     <TextView
         android:id="@+id/competition_stage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@id/flag"
         app:layout_constraintStart_toEndOf="@id/league_logo"
         app:layout_constraintTop_toBottomOf="@id/league_description"
-        tools:text="Tour 6"
-        />
+        tools:text="Tour 6" />
 
     <ImageView
         android:id="@+id/home_star"
@@ -172,11 +174,12 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@color/red"
         android:gravity="center"
         android:text="Info"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_team_name"
-        android:background="@color/red"/>
+        app:layout_constraintTop_toBottomOf="@id/home_team_name" />
 
     <TextView
         android:id="@+id/h2h"
@@ -184,6 +187,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="H2H"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/match_info"
         app:layout_constraintTop_toTopOf="@id/match_info" />
 
@@ -193,18 +197,19 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Table"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/h2h"
         app:layout_constraintTop_toTopOf="@id/match_info" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_info"
-            tools:layout="@layout/fragment_matches" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/match_info"
+        tools:layout="@layout/fragment_matches" />
 
     <TextView
         android:id="@+id/error_message"

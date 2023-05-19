@@ -64,7 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/league_logo"
         android:paddingStart="3dp"
-        android:paddingEnd="3dp"/>
+        android:paddingEnd="3dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/results"
@@ -76,7 +77,8 @@
         app:layout_constraintTop_toTopOf="@id/table"
         app:layout_constraintBottom_toBottomOf="@id/table"
         android:paddingStart="3dp"
-        android:paddingEnd="3dp"/>
+        android:paddingEnd="3dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/calendar"
@@ -88,7 +90,8 @@
         app:layout_constraintTop_toTopOf="@id/table"
         app:layout_constraintBottom_toBottomOf="@id/table"
         android:paddingStart="3dp"
-        android:paddingEnd="3dp"/>
+        android:paddingEnd="3dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/topscorers"
@@ -100,7 +103,8 @@
         app:layout_constraintTop_toTopOf="@id/table"
         app:layout_constraintBottom_toBottomOf="@id/table"
         android:paddingStart="3dp"
-        android:paddingEnd="3dp"/>
+        android:paddingEnd="3dp"
+        android:textStyle="bold"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
