@@ -67,7 +67,7 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
                     } else {
                         it.setBackgroundColor(
                             resources.getColor(
-                                R.color.black,
+                                R.color.white_or_black,
                                 requireActivity().theme
                             )
                         )

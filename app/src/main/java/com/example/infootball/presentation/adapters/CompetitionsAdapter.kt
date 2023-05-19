@@ -59,16 +59,9 @@ class CompetitionsAdapter(onRvItemClickListener: OnRvItemClickListener) :
                         .load(Uri.parse(link), flag)
                 }
             }
-//            if (competition.area?.flag == competition.emblem) {
-//                Picasso.get().load(R.drawable.world_flag)
-//                    .placeholder(R.drawable.ic_launcher_foreground)
-//                    .into(flag)
-//            } else {
-//                GlideToVectorYou
-//                    .init()
-//                    .with(binding.root.context)
-//                    .load(Uri.parse(competition.area?.flag), flag)
-//            }
+            if (competition.area?.flag == competition.emblem) {
+                leagueLogo.visibility = View.GONE
+            }
             binding.root.setOnClickListener(this@CompetitionViewHolder)
         }
 
