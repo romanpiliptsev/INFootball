@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentFavoritesBinding
@@ -12,6 +13,7 @@ import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
 import com.example.infootball.presentation.adapters.TopscorersAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionTopscorersViewModel
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.FavoriteMatchesViewModel
 import com.example.infootball.presentation.viewmodels.H2HViewModel
 
@@ -41,7 +43,7 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
         rvMatches.adapter = adapter
         rvMatches.layoutManager = LinearLayoutManager(requireContext())
 
-        val vm = FavoriteMatchesViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[FavoriteMatchesViewModel::class.java]
         vm.getFavoriteMatches()
 
         vm.getFavoriteMatchesStateLiveData.observe(viewLifecycleOwner) {
@@ -73,6 +75,9 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getFavoriteMatches()
         }
     }
 

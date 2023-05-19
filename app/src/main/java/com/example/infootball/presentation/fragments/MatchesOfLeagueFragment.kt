@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.R
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentMatchesOfLeagueBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.MatchesOfLeagueViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
@@ -52,7 +54,7 @@ class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = MatchesOfLeagueViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[MatchesOfLeagueViewModel::class.java]
 
         val adapter = LiveOrLeagueMatchesAdapter(this)
         rvMatches.adapter = adapter
@@ -111,6 +113,9 @@ class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemC
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getMatchList(paramCompetition ?: "", paramDate ?: "")
         }
     }
 

@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.R
 import com.example.infootball.databinding.FragmentMatchesBinding
 import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.LeaguesOfMatchesAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.LeaguesOfMatchesViewModel
 import java.time.LocalDate
 
@@ -37,7 +39,7 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = LeaguesOfMatchesViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[LeaguesOfMatchesViewModel::class.java]
 
         date = LocalDate.now().toString()
         binding.today.text = LocalDate.now().toString()
@@ -109,7 +111,6 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
                 }
             }
         }
-
         binding.retryButton.setOnClickListener {
             vm.getLeagueList(LocalDate.parse(date))
         }

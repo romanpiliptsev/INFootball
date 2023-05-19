@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentCompetitionResultsOrCalendarBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionMatchesViewModel
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"
@@ -52,7 +54,7 @@ class CompetitionResultsOrCalendarFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = CompetitionMatchesViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[CompetitionMatchesViewModel::class.java]
 
         val adapter = ResultsAndCalendarAdapter(this)
         rvMatches.adapter = adapter
@@ -89,6 +91,9 @@ class CompetitionResultsOrCalendarFragment : Fragment(),
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getMatchList(paramLeagueCode ?: "", paramSeason ?: "", paramIsResults ?: true)
         }
     }
 

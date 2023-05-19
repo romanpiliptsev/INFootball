@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.R
 import com.example.infootball.data.network.model.StandingsResponseDto
 import com.example.infootball.databinding.FragmentTableBinding
 import com.example.infootball.presentation.activities.TeamActivity
 import com.example.infootball.presentation.adapters.TableAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.StandingsViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
@@ -56,7 +58,7 @@ class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = StandingsViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[StandingsViewModel::class.java]
 
         val adapter = TableAdapter(this)
         rvTableItems.adapter = adapter
@@ -142,7 +144,6 @@ class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
                     }
                 }
             }
-
             binding.retryButton.setOnClickListener {
                 vm.getMatchStandings(paramLeagueCode ?: "", paramSeason ?: "")
             }

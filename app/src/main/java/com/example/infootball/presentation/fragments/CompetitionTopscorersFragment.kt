@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.TopscorerDto
 import com.example.infootball.databinding.FragmentCompetitionTopscorersBinding
 import com.example.infootball.presentation.adapters.TopscorersAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionTopscorersViewModel
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"
@@ -47,7 +49,7 @@ class CompetitionTopscorersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = CompetitionTopscorersViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[CompetitionTopscorersViewModel::class.java]
 
         val adapter = TopscorersAdapter()
         rvTopscorers.adapter = adapter
@@ -84,6 +86,9 @@ class CompetitionTopscorersFragment : Fragment() {
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getTopscorerList(paramLeagueCode ?: "", paramSeason ?: "", 100)
         }
     }
 

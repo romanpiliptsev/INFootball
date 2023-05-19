@@ -14,6 +14,7 @@ import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.domain.repositories.MainRepository
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainRepositoryImpl(application: Application) : MainRepository {
 
@@ -108,7 +109,10 @@ class MainRepositoryImpl(application: Application) : MainRepository {
     }
 
     override suspend fun getCompetitions(): ArrayList<CompetitionWithAreaDto> {
-        return apiService.getCompetitions().competitions ?: throw RuntimeException()
+        return apiService.getCompetitions().competitions
+            ?.filter { it.code != "EC" && it.code != "WC" }
+            ?.let { ArrayList(it) }
+            ?: throw RuntimeException()
     }
 
     override suspend fun getCompetition(competitionCode: String): CompetitionWithAreaDto {

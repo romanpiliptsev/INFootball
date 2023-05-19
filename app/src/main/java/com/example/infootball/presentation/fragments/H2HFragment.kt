@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.R
 import com.example.infootball.data.network.model.H2HDto
 import com.example.infootball.databinding.FragmentH2HBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.H2HMatchesAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.H2HViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
@@ -49,7 +51,7 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = H2HViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[H2HViewModel::class.java]
 
         val adapter = H2HMatchesAdapter(this)
         rvMatches.adapter = adapter
@@ -135,7 +137,6 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
                 }
             }
         }
-
         binding.retryButton.setOnClickListener {
             vm.getH2H(paramMatchId ?: -1)
         }

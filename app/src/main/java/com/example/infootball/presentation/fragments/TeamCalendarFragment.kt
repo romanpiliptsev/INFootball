@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentTeamCalendarBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.TeamCalendarViewModel
 
 private const val ARG_PARAM_TEAM_ID = "param_team_id"
@@ -45,7 +47,7 @@ class TeamCalendarFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClick
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = TeamCalendarViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[TeamCalendarViewModel::class.java]
 
         val adapter = ResultsAndCalendarAdapter(this)
         rvMatches.adapter = adapter
@@ -82,6 +84,9 @@ class TeamCalendarFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClick
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getTeamCalendar(paramTeamId ?: -1)
         }
     }
 

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentLiveBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.LiveMatchesViewModel
 
 class LiveFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListener {
@@ -34,7 +36,7 @@ class LiveFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = LiveMatchesViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[LiveMatchesViewModel::class.java]
 
         val adapter = LiveOrLeagueMatchesAdapter(this)
         rvMatches.adapter = adapter
@@ -47,13 +49,18 @@ class LiveFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListene
                 is LiveMatchesViewModel.GetMatchesState.Error -> {
                     with(binding) {
                         rvMatches.visibility = View.GONE
+                        noMatches.visibility = View.GONE
                         progressBar.visibility = View.GONE
                         errorGroup.visibility = View.VISIBLE
                     }
                 }
                 is LiveMatchesViewModel.GetMatchesState.Loaded -> {
                     with(binding) {
-                        rvMatches.visibility = View.VISIBLE
+                        if (it.matches.isEmpty()) {
+                            noMatches.visibility = View.VISIBLE
+                        } else {
+                            rvMatches.visibility = View.VISIBLE
+                        }
                         progressBar.visibility = View.GONE
                         errorGroup.visibility = View.GONE
                     }
@@ -66,11 +73,15 @@ class LiveFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListene
                 is LiveMatchesViewModel.GetMatchesState.Loading -> {
                     with(binding) {
                         rvMatches.visibility = View.GONE
+                        noMatches.visibility = View.GONE
                         progressBar.visibility = View.VISIBLE
                         errorGroup.visibility = View.GONE
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getMatchList()
         }
     }
 

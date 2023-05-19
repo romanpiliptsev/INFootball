@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.data.network.model.CompetitionWithAreaDto
 import com.example.infootball.databinding.FragmentLeaguesBinding
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.CompetitionsAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.CompetitionsViewModel
 
 class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
@@ -34,7 +36,7 @@ class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = CompetitionsViewModel(requireActivity().application)
+        val vm = ViewModelProvider(this)[CompetitionsViewModel::class.java]
 
         val adapter = CompetitionsAdapter(this)
         rvCompetitions.adapter = adapter
@@ -71,6 +73,9 @@ class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getCompetitions()
         }
     }
 
