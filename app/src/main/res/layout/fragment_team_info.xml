@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.TeamInfoFragment">
+
+    <ImageView
+        android:id="@+id/stadium_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/stadium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/text_stadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/stadium_img"
+        app:layout_constraintBottom_toBottomOf="@id/stadium_img"
+        app:layout_constraintStart_toEndOf="@id/stadium_img"
+        android:text="Stadium: "/>
+
+    <TextView
+        android:id="@+id/stadium_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/stadium_img"
+        app:layout_constraintBottom_toBottomOf="@id/stadium_img"
+        app:layout_constraintStart_toEndOf="@id/text_stadium"
+        tools:text="Camp Nou"/>
+
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/stadium_img"
+        app:layout_constraintEnd_toEndOf="@id/text_stadium"
+        android:text="Address: "/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/stadium_img"
+        app:layout_constraintStart_toEndOf="@id/text_address"
+        tools:text="Komarova 11/3"/>
+
+    <TextView
+        android:id="@+id/text_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_address"
+        app:layout_constraintEnd_toEndOf="@id/text_stadium"
+        android:text="Website: "
+        android:layout_marginTop="7dp"/>
+
+    <TextView
+        android:id="@+id/website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/text_website"
+        app:layout_constraintStart_toEndOf="@id/text_website"
+        tools:text="aaa.com"
+        android:autoLink="web"/>
+
+    <TextView
+        android:id="@+id/text_founded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/website"
+        app:layout_constraintStart_toStartOf="@id/text_stadium"
+        android:text="Founded in "
+        android:layout_marginTop="7dp"/>
+
+    <TextView
+        android:id="@+id/founded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/text_founded"
+        app:layout_constraintStart_toEndOf="@id/text_founded"
+        tools:text="1919"/>
+
+    <TextView
+        android:id="@+id/text_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_founded"
+        app:layout_constraintStart_toStartOf="@id/text_stadium"
+        android:text="Club colors: "
+        android:layout_marginTop="7dp"/>
+
+    <TextView
+        android:id="@+id/colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/text_colors"
+        app:layout_constraintStart_toEndOf="@id/text_colors"
+        tools:text="Red and Blue"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

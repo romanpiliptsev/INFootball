@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.MatchActivity">
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:text="INFootball"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/match_star"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="5dp"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <ImageView
+        android:id="@+id/flag"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
+        tools:src="@drawable/world_flag" />
+
+    <ImageView
+        android:id="@+id/league_logo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/flag"
+        app:layout_constraintStart_toEndOf="@id/flag"
+        app:layout_constraintTop_toTopOf="@id/flag"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <TextView
+        android:id="@+id/league_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/competition_stage"
+        app:layout_constraintStart_toEndOf="@id/league_logo"
+        app:layout_constraintTop_toTopOf="@id/flag"
+        tools:text="Spain: La Liga"
+        />
+
+    <TextView
+        android:id="@+id/competition_stage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/flag"
+        app:layout_constraintStart_toEndOf="@id/league_logo"
+        app:layout_constraintTop_toBottomOf="@id/league_description"
+        tools:text="Tour 6"
+        />
+
+    <ImageView
+        android:id="@+id/home_star"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/home_team_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_team_logo"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <ImageView
+        android:id="@+id/home_team_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@id/home_star"
+        app:layout_constraintTop_toBottomOf="@id/flag"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <TextView
+        android:id="@+id/home_team_goals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/home_team_logo"
+        app:layout_constraintEnd_toStartOf="@id/stick"
+        app:layout_constraintStart_toEndOf="@id/home_team_logo"
+        app:layout_constraintTop_toTopOf="@id/home_team_logo"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/stick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/home_team_logo"
+        app:layout_constraintEnd_toStartOf="@id/away_team_goals"
+        app:layout_constraintStart_toEndOf="@id/home_team_goals"
+        app:layout_constraintTop_toTopOf="@id/home_team_logo" />
+
+    <TextView
+        android:id="@+id/away_team_goals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/home_team_logo"
+        app:layout_constraintEnd_toStartOf="@id/away_team_logo"
+        app:layout_constraintStart_toEndOf="@id/stick"
+        app:layout_constraintTop_toTopOf="@id/home_team_logo"
+        tools:text="0" />
+
+    <ImageView
+        android:id="@+id/away_star"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/away_team_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/away_team_logo"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <ImageView
+        android:id="@+id/away_team_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toStartOf="@id/away_star"
+        app:layout_constraintTop_toBottomOf="@id/flag"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <TextView
+        android:id="@+id/date_and_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flag"
+        tools:text="04.04.2023 21:45" />
+
+    <TextView
+        android:id="@+id/home_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/home_team_logo"
+        app:layout_constraintStart_toStartOf="@id/home_team_logo"
+        app:layout_constraintTop_toBottomOf="@id/home_team_logo"
+        tools:text="FC Barcelona" />
+
+    <TextView
+        android:id="@+id/away_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/away_team_logo"
+        app:layout_constraintStart_toStartOf="@id/away_team_logo"
+        app:layout_constraintTop_toBottomOf="@id/away_team_logo"
+        tools:text="Real Madrid CF" />
+
+    <TextView
+        android:id="@+id/match_info"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_team_name"
+        android:background="@color/red"/>
+
+    <TextView
+        android:id="@+id/h2h"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="H2H"
+        app:layout_constraintStart_toEndOf="@id/match_info"
+        app:layout_constraintTop_toTopOf="@id/match_info" />
+
+    <TextView
+        android:id="@+id/table"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Table"
+        app:layout_constraintStart_toEndOf="@id/h2h"
+        app:layout_constraintTop_toTopOf="@id/match_info" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/match_info"
+            tools:layout="@layout/fragment_matches" />
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERROR!!!"
+        app:layout_constraintBottom_toTopOf="@id/retry_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/retry_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RETRY"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_message"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/error_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="error_message,retry_button" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/loaded_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="flag,league_logo,league_description,home_star,away_team_logo,
+        home_team_logo,home_team_goals,stick,away_team_goals,away_star,date_and_time,home_team_name,
+        away_team_name,match_info,h2h,table,fragment_container,match_star,competition_stage" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

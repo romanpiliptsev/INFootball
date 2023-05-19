@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.MatchInfoFragment">
+
+    <ImageView
+        android:id="@+id/whistle"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/whistle"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/referee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Referee: Mateo Laos (Spain)"
+        app:layout_constraintTop_toTopOf="@id/whistle"
+        app:layout_constraintBottom_toBottomOf="@id/whistle"
+        app:layout_constraintStart_toEndOf="@id/whistle"/>
+
+    <ImageView
+        android:id="@+id/stadium_img"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toBottomOf="@id/whistle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/stadium"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/stadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Stadium: Camp Nou"
+        app:layout_constraintTop_toTopOf="@id/stadium_img"
+        app:layout_constraintBottom_toBottomOf="@id/stadium_img"
+        app:layout_constraintStart_toEndOf="@id/stadium_img"/>
+
+    <TextView
+        android:id="@+id/no_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sorry, no information about this match..."
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

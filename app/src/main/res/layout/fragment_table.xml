@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.TableFragment"
+    android:isScrollContainer="true"
+    android:measureAllChildren="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/flag"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/league_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/whistle"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
+
+        <ImageView
+            android:id="@+id/league_logo"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            app:layout_constraintStart_toEndOf="@id/flag"
+            app:layout_constraintEnd_toStartOf="@id/league_name"
+            app:layout_constraintTop_toTopOf="@id/flag"
+            app:layout_constraintBottom_toBottomOf="@id/flag"
+            tools:src="@drawable/whistle"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/league_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold|italic"
+            tools:text="LA LIGA"
+            app:layout_constraintStart_toEndOf="@id/league_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/league_logo"
+            app:layout_constraintBottom_toBottomOf="@id/league_logo"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/league_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/gl1"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.03" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl1.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <TextView
+            android:id="@+id/text_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Club"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl1.5"
+            app:layout_constraintRight_toLeftOf="@id/gl2"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+        <!--        <View-->
+        <!--            android:layout_width="5px"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:background="@color/red"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintLeft_toLeftOf="@id/gl2"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/league_name" />-->
+
+        <TextView
+            android:id="@+id/text_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gms"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl2"
+            app:layout_constraintRight_toLeftOf="@id/gl3"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <TextView
+            android:id="@+id/text_wins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl3"
+            app:layout_constraintRight_toLeftOf="@id/gl4"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.72" />
+
+        <TextView
+            android:id="@+id/text_draws"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl4"
+            app:layout_constraintRight_toLeftOf="@id/gl5"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.78" />
+
+        <TextView
+            android:id="@+id/text_defeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="L"
+            android:textColor="@color/defeat_red"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl5"
+            app:layout_constraintRight_toLeftOf="@id/gl6"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.84" />
+
+        <TextView
+            android:id="@+id/text_goal_difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diff"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl6"
+            app:layout_constraintRight_toLeftOf="@id/gl7"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92" />
+
+        <TextView
+            android:id="@+id/text_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PTS"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toTopOf="@id/rv_table_items"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_position" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_table_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_position" />
+        <!--        app:layout_constraintTop_toBottomOf="@id/line" />-->
+
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ERROR!!!"
+            app:layout_constraintBottom_toTopOf="@id/retry_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/retry_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RETRY"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/error_message"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/error_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="error_message,retry_button" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/ok_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="flag,league_logo,league_name,text_position,text_club,
+            text_games,text_wins,text_draws,text_defeat,text_goal_difference,text_points,line,
+            rv_table_items,spinner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

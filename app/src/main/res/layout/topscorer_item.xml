@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/topscorer_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gl0"
+        tools:text="1"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gl0"
+        />
+
+    <TextView
+        android:id="@+id/topscorer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minWidth="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/topscorer_team"
+        app:layout_constraintStart_toEndOf="@id/gl0"
+        app:layout_constraintEnd_toStartOf="@id/gl1"
+        tools:text="Abdessamad Ezzalzouli"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/team_logo"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toEndOf="@id/gl0"
+        app:layout_constraintEnd_toStartOf="@id/topscorer_team"
+        app:layout_constraintTop_toBottomOf="@id/topscorer_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:src="@drawable/whistle"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        />
+
+    <TextView
+        android:id="@+id/topscorer_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/topscorer_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/team_logo"
+        app:layout_constraintEnd_toStartOf="@id/gl1"
+        tools:text="Barcelona"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:textAllCaps="true" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.62"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gl1"/>
+
+    <TextView
+        android:id="@+id/matches"
+        android:layout_width="22dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/gl1"
+        app:layout_constraintEnd_toStartOf="@id/goals"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        tools:text="10"
+        />
+
+    <TextView
+        android:id="@+id/goals"
+        android:layout_width="22dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/matches"
+        app:layout_constraintEnd_toStartOf="@id/pen_goals"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        tools:text="10"
+        />
+
+    <TextView
+        android:id="@+id/pen_goals"
+        android:layout_width="22dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/goals"
+        app:layout_constraintEnd_toStartOf="@id/assists"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        tools:text="10"
+        />
+
+    <TextView
+        android:id="@+id/assists"
+        android:layout_width="22dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/pen_goals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        tools:text="10"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

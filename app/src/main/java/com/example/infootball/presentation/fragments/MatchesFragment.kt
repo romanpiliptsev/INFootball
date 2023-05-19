@@ -37,7 +37,7 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = LeaguesOfMatchesViewModel()
+        val vm = LeaguesOfMatchesViewModel(requireActivity().application)
 
         date = LocalDate.now().toString()
         binding.today.text = LocalDate.now().toString()

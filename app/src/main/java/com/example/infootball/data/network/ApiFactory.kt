@@ -1,12 +1,12 @@
 package com.example.infootball.data.network
 
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import okhttp3.OkHttpClient
 
 object ApiFactory {
-//    private const val BASE_URL = "https://v3.football.api-sports.io/"
+    //    private const val BASE_URL = "https://v3.football.api-sports.io/"
     private const val BASE_URL = "https://api.football-data.org/v4/"
 
     private val okHttpClient = OkHttpClient.Builder().apply {

@@ -1,8 +1,9 @@
 package com.example.infootball.presentation.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.domain.usecases.GetLeaguesOfMatchesUseCase
@@ -10,9 +11,9 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-class LeaguesOfMatchesViewModel : ViewModel() {
+class LeaguesOfMatchesViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val getLeaguesOfMatchesUseCase = GetLeaguesOfMatchesUseCase()
+    private val getLeaguesOfMatchesUseCase = GetLeaguesOfMatchesUseCase(application)
 
     private val _getLeaguesOfMatchesStateLiveData = MutableLiveData<GetMatchesState>()
     val getLeaguesOfMatchesStateLiveData: LiveData<GetMatchesState>

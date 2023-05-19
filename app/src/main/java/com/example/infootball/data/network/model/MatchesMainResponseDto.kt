@@ -1,6 +1,8 @@
 package com.example.infootball.data.network.model
 
+import com.google.gson.annotations.SerializedName
+
 data class MatchesMainResponseDto(
-    val resultSet: MatchesResultSetDto? = null,
-    val matches: ArrayList<MatchDto>? = null
+    @SerializedName("resultSet") val resultSet: MatchesResultSetDto? = null,
+    @SerializedName("matches") val matches: ArrayList<MatchDto>? = null
 )

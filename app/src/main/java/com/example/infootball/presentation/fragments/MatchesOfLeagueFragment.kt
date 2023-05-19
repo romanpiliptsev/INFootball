@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infootball.R
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentMatchesOfLeagueBinding
-import com.example.infootball.presentation.adapters.MatchesOfLeagueAdapter
+import com.example.infootball.presentation.activities.MatchActivity
+import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
 import com.example.infootball.presentation.viewmodels.MatchesOfLeagueViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
@@ -18,7 +19,7 @@ import com.squareup.picasso.Picasso
 private const val ARG_COMPETITION = "competition"
 private const val ARG_DATE = "date"
 
-class MatchesOfLeagueFragment : Fragment() {
+class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListener {
 
     private var paramCompetition: String? = null
     private var paramDate: String? = null
@@ -51,9 +52,9 @@ class MatchesOfLeagueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = MatchesOfLeagueViewModel()
+        val vm = MatchesOfLeagueViewModel(requireActivity().application)
 
-        val adapter = MatchesOfLeagueAdapter()
+        val adapter = LiveOrLeagueMatchesAdapter(this)
         rvMatches.adapter = adapter
         rvMatches.layoutManager = LinearLayoutManager(requireContext())
 
@@ -85,9 +86,18 @@ class MatchesOfLeagueFragment : Fragment() {
                     binding.leagueName.text = matchFromList.competition?.name
                     binding.country.text = matchFromList.area?.name
 
-                    Picasso.get().load(matchFromList.competition?.emblem)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .into(binding.leagueLogo)
+                    matchFromList.competition?.emblem.let { emblemLink ->
+                        if (emblemLink?.endsWith(".png") == true) {
+                            Picasso.get().load(emblemLink)
+                                .placeholder(R.drawable.ic_launcher_foreground)
+                                .into(binding.leagueLogo)
+                        } else {
+                            GlideToVectorYou
+                                .init()
+                                .with(context)
+                                .load(Uri.parse(emblemLink), binding.leagueLogo)
+                        }
+                    }
                     GlideToVectorYou
                         .init()
                         .with(context)
@@ -102,6 +112,10 @@ class MatchesOfLeagueFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onRvItemClick(position: Int) {
+        startActivity(MatchActivity.newIntent(requireContext(), matchesList[position].id ?: -1))
     }
 
     companion object {

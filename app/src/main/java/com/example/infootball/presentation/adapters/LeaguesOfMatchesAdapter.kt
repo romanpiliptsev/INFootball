@@ -18,10 +18,6 @@ class LeaguesOfMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
 
     private val listener: OnRvItemClickListener = onRvItemClickListener
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueViewHolder {
         val view =
             LeagueOfMatchesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -39,13 +35,30 @@ class LeaguesOfMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
             leagueName.text = leagueOfMatches.leagueName
             numberOfMatches.text = leagueOfMatches.numberOfMatches.toString()
             numberOfLiveMatches.text = leagueOfMatches.numberOfLiveMatches.toString()
-            Picasso.get().load(leagueOfMatches.leagueLogo)
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .into(leagueLogo)
-            GlideToVectorYou
-                .init()
-                .with(binding.root.context)
-                .load(Uri.parse(leagueOfMatches.countryFlag), flag)
+
+            leagueOfMatches.leagueLogo.let { link ->
+                if (link.endsWith(".png")) {
+                    Picasso.get().load(link)
+                        .placeholder(R.drawable.ic_launcher_foreground)
+                        .into(leagueLogo)
+                } else {
+                    GlideToVectorYou
+                        .init()
+                        .with(root.context)
+                        .load(Uri.parse(link), leagueLogo)
+                }
+            }
+
+            if (leagueOfMatches.countryFlag == leagueOfMatches.leagueLogo) {
+                Picasso.get().load(R.drawable.world_flag)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(flag)
+            } else {
+                GlideToVectorYou
+                    .init()
+                    .with(binding.root.context)
+                    .load(Uri.parse(leagueOfMatches.countryFlag), flag)
+            }
             binding.root.setOnClickListener(this@LeagueViewHolder)
         }
 

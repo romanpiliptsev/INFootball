@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activities.MainActivity">
+    tools:context=".presentation.activities.MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="INFootball"
+        android:textSize="20sp"
+        android:paddingBottom="10dp"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
@@ -13,7 +24,7 @@
         android:name="com.example.infootball.presentation.fragments.MatchesFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
         app:layout_constraintBottom_toTopOf="@id/leagues"
         tools:layout="@layout/fragment_matches"/>
 

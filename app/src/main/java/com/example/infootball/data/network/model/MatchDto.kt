@@ -15,5 +15,6 @@ data class MatchDto(
     @SerializedName("homeTeam") var homeTeam: TeamDto? = TeamDto(),
     @SerializedName("awayTeam") var awayTeam: TeamDto? = TeamDto(),
     @SerializedName("score") var score: ScoreDto? = ScoreDto(),
-    @SerializedName("referees") var referees: ArrayList<RefereeDto> = arrayListOf()
+    @SerializedName("referees") var referees: ArrayList<RefereeDto> = arrayListOf(),
+    @SerializedName("venue") var venue: String? = null
 )

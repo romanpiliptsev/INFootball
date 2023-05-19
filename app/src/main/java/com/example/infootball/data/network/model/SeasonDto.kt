@@ -7,5 +7,5 @@ data class SeasonDto(
     @SerializedName("startDate") var startDate: String? = null,
     @SerializedName("endDate") var endDate: String? = null,
     @SerializedName("currentMatchday") var currentMatchday: Int? = null,
-    @SerializedName("winner") var winner: String? = null
+//    @SerializedName("winner") var winner: String? = null
 )

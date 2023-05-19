@@ -1,21 +1,28 @@
 package com.example.infootball.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.data.network.model.CompetitionWithAreaDto
 import com.example.infootball.databinding.FragmentLeaguesBinding
+import com.example.infootball.presentation.activities.MainActivity
+import com.example.infootball.presentation.adapters.CompetitionsAdapter
+import com.example.infootball.presentation.viewmodels.CompetitionsViewModel
 
-class LeaguesFragment : Fragment() {
+class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
 
     private val binding by lazy {
         FragmentLeaguesBinding.inflate(layoutInflater)
     }
 
-//    private val rvTopLeagues by lazy {
-//        binding.rvTopLeagues
-//    }
+    private val rvCompetitions by lazy {
+        binding.rvLeagues
+    }
+
+    private lateinit var competitionList: List<CompetitionWithAreaDto>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,44 +31,54 @@ class LeaguesFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val vm = MatchesOfLeagueViewModel()
-//
-//        val adapter = TopLeaguesAdapter()
-//        rvTopLeagues.adapter = adapter
-//        rvTopLeagues.layoutManager = LinearLayoutManager(requireContext())
-//
-//        vm.getLeagueList(arrayListOf(1, 2, 3))
-//
-//        vm.getLeagueListStateLiveData.observe(viewLifecycleOwner) {
-//            when (it) {
-//                is MatchesOfLeagueViewModel.GetLeagueListState.Error -> {
-//                    with(binding) {
-//                        rvTopLeagues.visibility = View.GONE
-//                        progressBar.visibility = View.GONE
-//                        errorGroup.visibility = View.VISIBLE
-//                    }
-//                }
-//                is MatchesOfLeagueViewModel.GetLeagueListState.Loaded -> {
-//                    with(binding) {
-//                        rvTopLeagues.visibility = View.VISIBLE
-//                        progressBar.visibility = View.GONE
-//                        errorGroup.visibility = View.GONE
-//                    }
-//                    adapter.submitList(it.leagueList)
-//                }
-//                is MatchesOfLeagueViewModel.GetLeagueListState.Loading -> {
-//                    with(binding) {
-//                        rvTopLeagues.visibility = View.GONE
-//                        progressBar.visibility = View.VISIBLE
-//                        errorGroup.visibility = View.GONE
-//                    }
-//                }
-//            }
-//        }
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val vm = CompetitionsViewModel(requireActivity().application)
+
+        val adapter = CompetitionsAdapter(this)
+        rvCompetitions.adapter = adapter
+        rvCompetitions.layoutManager = LinearLayoutManager(requireContext())
+
+        vm.getCompetitions()
+
+        vm.getCompetitionsStateLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is CompetitionsViewModel.GetCompetitionsState.Error -> {
+                    with(binding) {
+                        rvCompetitions.visibility = View.GONE
+                        progressBar.visibility = View.GONE
+                        errorGroup.visibility = View.VISIBLE
+                    }
+                }
+                is CompetitionsViewModel.GetCompetitionsState.Loaded -> {
+                    with(binding) {
+                        rvCompetitions.visibility = View.VISIBLE
+                        progressBar.visibility = View.GONE
+                        errorGroup.visibility = View.GONE
+                    }
+
+                    it.competitions.let { list ->
+                        adapter.submitList(list)
+                        competitionList = list
+                    }
+                }
+                is CompetitionsViewModel.GetCompetitionsState.Loading -> {
+                    with(binding) {
+                        rvCompetitions.visibility = View.GONE
+                        progressBar.visibility = View.VISIBLE
+                        errorGroup.visibility = View.GONE
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onRvItemClick(position: Int) {
+        (requireActivity() as MainActivity).launchCompetitionFragment(
+            competitionList[position].code ?: throw RuntimeException()
+        )
+    }
 
     companion object {
 

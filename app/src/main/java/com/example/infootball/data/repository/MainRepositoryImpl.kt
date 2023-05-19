@@ -1,14 +1,26 @@
 package com.example.infootball.data.repository
 
+import android.app.Application
+import com.example.infootball.data.database.AppDatabase
+import com.example.infootball.data.database.dao.MatchListDao
+import com.example.infootball.data.database.dao.TeamListDao
+import com.example.infootball.data.database.db_model.MatchDbModel
+import com.example.infootball.data.database.db_model.TeamDbModel
 import com.example.infootball.data.network.ApiFactory
-import com.example.infootball.data.network.model.MatchDto
-import com.example.infootball.domain.MainRepository
+import com.example.infootball.data.network.ApiService
+import com.example.infootball.data.network.model.*
+import com.example.infootball.domain.entities.ExtendedTeamEntity
 import com.example.infootball.domain.entities.LeagueOfMatchesEntity
+import com.example.infootball.domain.repositories.MainRepository
 import java.time.LocalDate
+import java.util.*
 
-class MainRepositoryImpl : MainRepository {
+class MainRepositoryImpl(application: Application) : MainRepository {
 
     private val apiService = ApiFactory.apiService
+    private val appDb = AppDatabase.getInstance(application)
+    private val matchListDao: MatchListDao = appDb.matchListDao()
+    private val teamListDao: TeamListDao = appDb.teamListDao()
 
     override suspend fun getMatchesOfLeagueDay(
         competition: String,
@@ -18,7 +30,7 @@ class MainRepositoryImpl : MainRepository {
             competition,
             date,
             LocalDate.parse(date).plusDays(1).toString()
-        ).matches ?: throw Exception()
+        ).matches ?: throw RuntimeException()
     }
 
     override suspend fun getLeaguesOfMatches(date: LocalDate): List<LeagueOfMatchesEntity> {
@@ -43,5 +55,158 @@ class MainRepositoryImpl : MainRepository {
             }
         }
         return result
+    }
+
+    override suspend fun getMatch(matchId: Int): MatchDto {
+        return apiService.getMatch(matchId)
+    }
+
+    override suspend fun getMatchH2H(matchId: Int): H2HDto {
+        return apiService.getMatchH2H(matchId)
+    }
+
+    override suspend fun getCompetitionStandings(
+        code: String,
+        season: String
+    ): StandingsResponseDto {
+        return apiService.getCompetitionStandings(code, season)
+    }
+
+    override suspend fun getTeamById(teamId: Int): ExtendedTeamEntity {
+        return with(apiService.getTeamById(teamId)) {
+            ExtendedTeamEntity(
+                area,
+                id,
+                name,
+                shortName,
+                tla,
+                crest,
+                address,
+                website,
+                founded,
+                clubColors,
+                venue,
+                runningCompetitions.find { it.type == "LEAGUE" }?.code ?: "",
+                coach,
+                squad
+            )
+        }
+    }
+
+    override suspend fun getFinishedMatchesOfTeam(teamId: Int): ArrayList<MatchDto> {
+        return apiService.getFinishedMatchesOfTeam(teamId).matches?.reversed()
+            ?.let { ArrayList(it) }
+            ?: throw RuntimeException()
+    }
+
+    override suspend fun getNotFinishedMatchesOfTeam(teamId: Int): ArrayList<MatchDto> {
+        return apiService.getNotFinishedMatchesOfTeam(teamId).matches ?: throw RuntimeException()
+    }
+
+    override suspend fun getLiveMatches(): ArrayList<MatchDto> {
+        return apiService.getLiveMatches().matches ?: throw RuntimeException()
+    }
+
+    override suspend fun getCompetitions(): ArrayList<CompetitionWithAreaDto> {
+        return apiService.getCompetitions().competitions ?: throw RuntimeException()
+    }
+
+    override suspend fun getCompetition(competitionCode: String): CompetitionWithAreaDto {
+        return apiService.getCompetition(competitionCode)
+    }
+
+    override suspend fun getCompetitionMatches(
+        leagueCode: String,
+        season: String,
+        isFinished: Boolean
+    ): ArrayList<MatchDto> {
+        val status = when (isFinished) {
+            true -> listOf(
+                ApiService.STATUS_FINISHED, ApiService.STATUS_LIVE, ApiService.STATUS_PAUSED,
+                ApiService.STATUS_IN_PLAY, ApiService.STATUS_SUSPENDED
+            ).joinToString(separator = ",")
+            false -> listOf(
+                ApiService.STATUS_POSTPONED, ApiService.STATUS_SCHEDULED,
+                ApiService.STATUS_TIMED
+            ).joinToString(separator = ",")
+        }
+        return (
+                if (isFinished)
+                    apiService.getCompetitionMatches(
+                        leagueCode,
+                        season,
+                        status
+                    ).matches?.reversed()?.let { ArrayList(it) }
+                else
+                    apiService.getCompetitionMatches(leagueCode, season, status).matches
+                ) ?: throw RuntimeException()
+    }
+
+    override suspend fun getCompetitionTopscorers(
+        leagueCode: String,
+        limit: Int,
+        season: String
+    ): ArrayList<TopscorerDto> {
+        return apiService.getCompetitionTopscorers(leagueCode, limit, season).scorers
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    override suspend fun isTeamFavorite(teamId: Int): Boolean {
+        return teamListDao.getTeamItem(teamId) != null
+    }
+
+    override suspend fun addTeamItem(teamId: Int) {
+        teamListDao.addTeamItem(
+            TeamDbModel(teamId)
+        )
+    }
+
+    override suspend fun deleteTeamItem(teamId: Int) {
+        teamListDao.deleteTeamItem(teamId)
+    }
+
+    override suspend fun isMatchFavorite(matchId: Int): Boolean {
+        return matchListDao.getMatchItem(matchId) != null
+    }
+
+    override suspend fun addMatchItem(matchId: Int) {
+        matchListDao.addMatchItem(
+            MatchDbModel(matchId)
+        )
+    }
+
+    override suspend fun deleteMatchItem(matchId: Int) {
+        matchListDao.deleteMatchItem(matchId)
+    }
+
+    override suspend fun getAllFavoriteMatches(): List<MatchDto> {
+        val matchIdsString = matchListDao.getMatchList().map { it.id }.joinToString(separator = ",")
+        val result = if (matchIdsString != "")
+            apiService.getMatchesByIds(matchIdsString).matches
+        else
+            arrayListOf()
+
+        teamListDao.getTeamList().forEach {
+            apiService.getTeamMatchesByDates(
+                it.id,
+                LocalDate.now().plusDays(-7).toString(),
+                LocalDate.now().plusDays(7).toString()
+            ).matches?.let { matchList -> result?.addAll(matchList) }
+        }
+
+        return result?.let {
+            ArrayList(HashSet(it)).sortedBy { match ->
+                match.utcDate?.let { dateString ->
+                    Date(
+                        dateString.slice(0..3).toInt() - 1900,
+                        dateString.slice(5..6).toInt() - 1,
+                        dateString.slice(8..9).toInt(),
+                        dateString.slice(11..12).toInt(),
+                        dateString.slice(14..15).toInt()
+                    )
+                }
+            }
+        } ?: throw RuntimeException()
     }
 }

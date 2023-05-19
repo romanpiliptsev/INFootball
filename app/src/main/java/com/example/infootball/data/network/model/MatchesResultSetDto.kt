@@ -1,9 +1,11 @@
 package com.example.infootball.data.network.model
 
+import com.google.gson.annotations.SerializedName
+
 data class MatchesResultSetDto(
-    val count: Int? = null,
-    val competitions: String? = null,
-    val first: String? = null,
-    val last: String? = null,
-    val played: Int? = null
+    @SerializedName("count") val count: Int? = null,
+    @SerializedName("competitions") val competitions: String? = null,
+    @SerializedName("first") val first: String? = null,
+    @SerializedName("last") val last: String? = null,
+    @SerializedName("played") val played: Int? = null
 )
