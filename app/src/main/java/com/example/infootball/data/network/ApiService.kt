@@ -46,10 +46,7 @@ interface ApiService {
         @Path(TEAM_ID) teamId: Int
     ): MatchesMainResponseDto
 
-    @GET(
-        """$TEAMS/{$TEAM_ID}/$MATCHES/?$STATUS=$STATUS_TIMED,$STATUS_SCHEDULED,$STATUS_LIVE,
-        $STATUS_IN_PLAY,$STATUS_PAUSED,$STATUS_POSTPONED,$STATUS_SUSPENDED,$STATUS_CANCELLED"""
-    )
+    @GET("$TEAMS/{$TEAM_ID}/$MATCHES/?$STATUS=$STATUS_TIMED,$STATUS_SCHEDULED,$STATUS_LIVE,$STATUS_IN_PLAY,$STATUS_PAUSED,$STATUS_POSTPONED,$STATUS_SUSPENDED,$STATUS_CANCELLED")
     suspend fun getNotFinishedMatchesOfTeam(
         @Path(TEAM_ID) teamId: Int
     ): MatchesMainResponseDto

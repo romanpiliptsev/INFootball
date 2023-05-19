@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.infootball.R
 import com.example.infootball.data.network.model.PlayerOfTeamDto
 import com.example.infootball.databinding.ActivityTeamBinding
 import com.example.infootball.domain.entities.ExtendedTeamEntity
 import com.example.infootball.presentation.fragments.*
+import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.DbViewModel
 import com.example.infootball.presentation.viewmodels.TeamViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
@@ -34,7 +36,7 @@ class TeamActivity : AppCompatActivity() {
 
         val teamId = intent.getIntExtra(EXTRA_TEAM_ID, -1)
 
-        val dbVm = DbViewModel(application)
+        val dbVm = ViewModelProvider(this)[DbViewModel::class.java]
         dbVm.isFavoriteTeam(teamId)
         dbVm.getIsFavoriteTeamLiveData.observe(this) {
             isFav = it
@@ -139,6 +141,9 @@ class TeamActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getTeam(teamId)
         }
     }
 

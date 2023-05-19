@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.infootball.R
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.ActivityMatchBinding
@@ -34,7 +35,7 @@ class MatchActivity : AppCompatActivity() {
 
         val matchId = intent.getIntExtra(EXTRA_MATCH_ID, -1)
 
-        val dbVm = DbViewModel(application)
+        val dbVm = ViewModelProvider(this)[DbViewModel::class.java]
         dbVm.isFavoriteMatch(matchId)
         dbVm.getIsFavoriteMatchLiveData.observe(this) {
             isFav = it
@@ -56,7 +57,7 @@ class MatchActivity : AppCompatActivity() {
             isFav = !isFav
         }
 
-        val vm = MatchViewModel(application)
+        val vm = ViewModelProvider(this)[MatchViewModel::class.java]
         vm.getMatch(matchId)
 
         vm.getMatchStateLiveData.observe(this) {
@@ -127,6 +128,9 @@ class MatchActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+        binding.retryButton.setOnClickListener {
+            vm.getMatch(matchId)
         }
 
         binding.h2h.setOnClickListener {
