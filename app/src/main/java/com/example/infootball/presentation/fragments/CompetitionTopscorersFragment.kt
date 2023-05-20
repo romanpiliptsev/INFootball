@@ -11,7 +11,6 @@ import com.example.infootball.data.network.model.TopscorerDto
 import com.example.infootball.databinding.FragmentCompetitionTopscorersBinding
 import com.example.infootball.presentation.adapters.TopscorersAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionTopscorersViewModel
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"

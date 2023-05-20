@@ -15,7 +15,6 @@ import com.example.infootball.data.network.model.PlayerOfTeamDto
 import com.example.infootball.databinding.ActivityTeamBinding
 import com.example.infootball.domain.entities.ExtendedTeamEntity
 import com.example.infootball.presentation.fragments.*
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.DbViewModel
 import com.example.infootball.presentation.viewmodels.TeamViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou

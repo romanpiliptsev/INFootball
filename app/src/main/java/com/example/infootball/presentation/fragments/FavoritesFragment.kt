@@ -11,11 +11,7 @@ import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentFavoritesBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
-import com.example.infootball.presentation.adapters.TopscorersAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionTopscorersViewModel
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.FavoriteMatchesViewModel
-import com.example.infootball.presentation.viewmodels.H2HViewModel
 
 class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickListener {
 

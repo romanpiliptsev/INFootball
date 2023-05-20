@@ -13,7 +13,6 @@ import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentMatchesOfLeagueBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.MatchesOfLeagueViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso

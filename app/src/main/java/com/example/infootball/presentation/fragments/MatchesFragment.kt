@@ -12,7 +12,6 @@ import com.example.infootball.databinding.FragmentMatchesBinding
 import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.LeaguesOfMatchesAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.LeaguesOfMatchesViewModel
 import java.time.LocalDate
 

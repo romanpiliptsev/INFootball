@@ -11,7 +11,6 @@ import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentLiveBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.LiveMatchesViewModel
 
 class LiveFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListener {

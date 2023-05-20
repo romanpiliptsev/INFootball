@@ -10,7 +10,7 @@ import com.example.infootball.data.database.db_model.MatchDbModel
 import com.example.infootball.data.database.db_model.TeamDbModel
 
 @Database(entities = [MatchDbModel::class, TeamDbModel::class], version = 1, exportSchema = false)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun teamListDao(): TeamListDao
     abstract fun matchListDao(): MatchListDao

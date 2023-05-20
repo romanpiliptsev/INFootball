@@ -15,7 +15,6 @@ import com.example.infootball.databinding.FragmentCompetitionBinding
 import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
-import java.time.LocalDate
 
 private const val ARG_PARAM_COMPETITION_CODE = "param_competition_code"
 

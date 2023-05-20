@@ -11,7 +11,6 @@ import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentTeamResultsBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.TeamResultsViewModel
 
 private const val ARG_PARAM_TEAM_ID = "param_team_id"

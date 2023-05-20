@@ -14,7 +14,6 @@ import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.domain.repositories.MainRepository
 import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainRepositoryImpl(application: Application) : MainRepository {
 
@@ -50,7 +49,7 @@ class MainRepositoryImpl(application: Application) : MainRepository {
                         matches[0].competition?.emblem ?: throw Exception(),
                         matches[0].area?.flag ?: throw Exception(),
                         matches.size,
-                        matches.filter { it.status == "IN_PLAY" }.size
+                        matches.filter { it.status == "IN_PLAY" || it.status == "PAUSED" }.size
                     )
                 )
             }

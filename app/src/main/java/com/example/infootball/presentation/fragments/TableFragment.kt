@@ -15,7 +15,6 @@ import com.example.infootball.data.network.model.StandingsResponseDto
 import com.example.infootball.databinding.FragmentTableBinding
 import com.example.infootball.presentation.activities.TeamActivity
 import com.example.infootball.presentation.adapters.TableAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.StandingsViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso

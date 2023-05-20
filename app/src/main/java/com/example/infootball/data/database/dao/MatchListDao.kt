@@ -1,6 +1,9 @@
 package com.example.infootball.data.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.infootball.data.database.db_model.MatchDbModel
 
 @Dao

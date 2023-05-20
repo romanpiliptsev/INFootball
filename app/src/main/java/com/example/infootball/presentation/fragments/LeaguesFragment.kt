@@ -11,7 +11,6 @@ import com.example.infootball.data.network.model.CompetitionWithAreaDto
 import com.example.infootball.databinding.FragmentLeaguesBinding
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.CompetitionsAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.CompetitionsViewModel
 
 class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {

@@ -13,7 +13,6 @@ import com.example.infootball.data.network.model.H2HDto
 import com.example.infootball.databinding.FragmentH2HBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.H2HMatchesAdapter
-import com.example.infootball.presentation.viewmodels.CompetitionViewModel
 import com.example.infootball.presentation.viewmodels.H2HViewModel
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
