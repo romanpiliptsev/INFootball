@@ -23,7 +23,8 @@
         tools:text="Referee: Mateo Laos (Spain)"
         app:layout_constraintTop_toTopOf="@id/whistle"
         app:layout_constraintBottom_toBottomOf="@id/whistle"
-        app:layout_constraintStart_toEndOf="@id/whistle"/>
+        app:layout_constraintStart_toEndOf="@id/whistle"
+        android:layout_marginStart="3dp"/>
 
     <ImageView
         android:id="@+id/stadium_img"
@@ -32,7 +33,8 @@
         app:layout_constraintTop_toBottomOf="@id/whistle"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/stadium"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"/>
 
     <TextView
         android:id="@+id/stadium"
@@ -41,7 +43,8 @@
         tools:text="Stadium: Camp Nou"
         app:layout_constraintTop_toTopOf="@id/stadium_img"
         app:layout_constraintBottom_toBottomOf="@id/stadium_img"
-        app:layout_constraintStart_toEndOf="@id/stadium_img"/>
+        app:layout_constraintStart_toEndOf="@id/stadium_img"
+        android:layout_marginStart="3dp"/>
 
     <TextView
         android:id="@+id/no_info"

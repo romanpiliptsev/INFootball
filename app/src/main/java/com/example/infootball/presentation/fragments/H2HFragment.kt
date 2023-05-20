@@ -19,10 +19,14 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
 
 private const val ARG_PARAM_MATCH_ID = "param_match_id"
+private const val ARG_PARAM_HOME_TEAM_EMBLEM_LINK = "param_home_team_emblem_link"
+private const val ARG_PARAM_AWAY_TEAM_EMBLEM_LINK = "param_away_team_emblem_link"
 
 class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
 
     private var paramMatchId: Int? = null
+    private var paramHomeTeamEmblemLink: String? = null
+    private var paramAwayTeamEmblemLink: String? = null
 
     private val binding by lazy {
         FragmentH2HBinding.inflate(layoutInflater)
@@ -38,6 +42,8 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramMatchId = it.getInt(ARG_PARAM_MATCH_ID, -1)
+            paramHomeTeamEmblemLink = it.getString(ARG_PARAM_HOME_TEAM_EMBLEM_LINK)
+            paramAwayTeamEmblemLink = it.getString(ARG_PARAM_AWAY_TEAM_EMBLEM_LINK)
         }
     }
 
@@ -78,7 +84,8 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
                         progressBar.visibility = View.GONE
                         errorGroup.visibility = View.GONE
 
-                        last15.text = "LAST ${h2h.aggregates?.numberOfMatches} MATCHES STATISTICS"
+                        last15.text =
+                            "LAST ${h2h.aggregates?.numberOfMatches ?: "0"} MATCHES STATISTICS"
 
                         h2h.aggregates?.homeTeam?.wins.let { wins ->
                             if (wins != null) {
@@ -99,31 +106,28 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
                             }
                         }
 
-                        if (h2h.matches.isNotEmpty()) {
-                            // TODO: Исправить логику вывода эмблемы клуба
-                            h2h.matches[0].homeTeam?.crest.let { link ->
-                                if (link?.endsWith(".png") == true) {
-                                    Picasso.get().load(link)
-                                        .placeholder(R.drawable.ic_launcher_foreground)
-                                        .into(homeTeamLogo)
-                                } else {
-                                    GlideToVectorYou
-                                        .init()
-                                        .with(binding.root.context)
-                                        .load(Uri.parse(link), homeTeamLogo)
-                                }
+                        paramHomeTeamEmblemLink.let { link ->
+                            if (link?.endsWith(".png") == true) {
+                                Picasso.get().load(link)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(homeTeamLogo)
+                            } else {
+                                GlideToVectorYou
+                                    .init()
+                                    .with(binding.root.context)
+                                    .load(Uri.parse(link), homeTeamLogo)
                             }
-                            h2h.matches[0].awayTeam?.crest.let { link ->
-                                if (link?.endsWith(".png") == true) {
-                                    Picasso.get().load(link)
-                                        .placeholder(R.drawable.ic_launcher_foreground)
-                                        .into(awayTeamLogo)
-                                } else {
-                                    GlideToVectorYou
-                                        .init()
-                                        .with(binding.root.context)
-                                        .load(Uri.parse(link), awayTeamLogo)
-                                }
+                        }
+                        paramAwayTeamEmblemLink.let { link ->
+                            if (link?.endsWith(".png") == true) {
+                                Picasso.get().load(link)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(awayTeamLogo)
+                            } else {
+                                GlideToVectorYou
+                                    .init()
+                                    .with(binding.root.context)
+                                    .load(Uri.parse(link), awayTeamLogo)
                             }
                         }
                     }
@@ -145,10 +149,12 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
     companion object {
 
         @JvmStatic
-        fun newInstance(matchId: Int) =
+        fun newInstance(matchId: Int, homeTeamEmblemLink: String, awayTeamEmblemLink: String) =
             H2HFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_PARAM_MATCH_ID, matchId)
+                    putString(ARG_PARAM_HOME_TEAM_EMBLEM_LINK, homeTeamEmblemLink)
+                    putString(ARG_PARAM_AWAY_TEAM_EMBLEM_LINK, awayTeamEmblemLink)
                 }
             }
     }

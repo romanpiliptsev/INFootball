@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="7dp"
     android:paddingEnd="5dp"
+    android:layout_marginBottom="5dp"
     android:paddingStart="5dp">
 
 <!--    <ImageView-->
@@ -37,6 +38,7 @@
         app:layout_constraintStart_toEndOf="@id/league_logo"
         tools:text="24.04.2014"
         android:textSize="12sp"
+        android:layout_marginStart="4dp"
         />
 
     <ImageView
@@ -47,7 +49,8 @@
         app:layout_constraintBottom_toTopOf="@+id/away_team_logo"
         app:layout_constraintStart_toEndOf="@+id/date"
         tools:src="@drawable/ic_yellow_star"
-        android:layout_marginStart="4dp"/>
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"/>
 
     <ImageView
         android:id="@+id/away_team_logo"

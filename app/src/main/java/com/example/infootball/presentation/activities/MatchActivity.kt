@@ -113,6 +113,9 @@ class MatchActivity : AppCompatActivity() {
                             awayTeamLogo.setOnClickListener {
                                 launchTeamActivity(awayTeam?.id ?: -1)
                             }
+                            if (competition?.emblem == area?.flag) {
+                                leagueLogo.visibility = View.GONE
+                            }
                         }
                     }
                     launchMatchInfoFragment(
@@ -190,7 +193,11 @@ class MatchActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(
                 binding.fragmentContainer.id,
-                H2HFragment.newInstance(matchId)
+                H2HFragment.newInstance(
+                    matchId,
+                    match.homeTeam?.crest ?: "",
+                    match.awayTeam?.crest ?: ""
+                )
             )
             .commit()
     }

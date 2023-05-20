@@ -4,20 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activities.MainActivity"
-    >
+    tools:context=".presentation.activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/infootball_logo"/>
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/app_logo"
+        app:layout_constraintBottom_toBottomOf="@id/app_logo"
+        app:layout_constraintStart_toEndOf="@id/app_logo"
         android:text="INFootball"
-        android:textSize="20sp"
-        android:paddingBottom="10dp"
-        android:paddingStart="8dp"
-        android:textStyle="bold"/>
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_marginStart="3dp"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
@@ -28,7 +37,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_name"
         app:layout_constraintBottom_toTopOf="@id/leagues"
-        tools:layout="@layout/fragment_matches"/>
+        tools:layout="@layout/fragment_matches"
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/matches"

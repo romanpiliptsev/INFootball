@@ -14,7 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="05.04"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textSize="15sp"/>
 
     <ImageView
         android:id="@+id/league_logo"
@@ -23,7 +24,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/date"
         tools:src="@drawable/ic_yellow_star"
-        android:layout_marginStart="6dp" />
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"/>
 
     <TextView
         android:id="@+id/league_name"
@@ -33,7 +35,8 @@
         app:layout_constraintBottom_toTopOf="@id/flag"
         app:layout_constraintStart_toEndOf="@id/league_logo"
         tools:text="La Liga"
-        android:layout_marginStart="4dp"/>
+        android:layout_marginStart="4dp"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/flag"
@@ -52,7 +55,8 @@
         app:layout_constraintStart_toEndOf="@id/flag"
         app:layout_constraintTop_toTopOf="@id/flag"
         app:layout_constraintBottom_toBottomOf="@id/flag"
-        tools:text="Spain"/>
+        tools:text="Spain"
+        android:layout_marginStart="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_matches"

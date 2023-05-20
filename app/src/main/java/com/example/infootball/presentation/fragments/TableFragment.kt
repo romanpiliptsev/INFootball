@@ -106,6 +106,10 @@ class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
                         .with(context)
                         .load(Uri.parse(standings.area?.flag), binding.flag)
 
+                    if (standings.competition?.emblem == standings.area?.flag) {
+                        binding.flag.visibility = View.GONE
+                    }
+
                     if (standings.competition?.type == "LEAGUE" || standings.standings.size == 1) {
                         binding.spinner.visibility = View.GONE
                     } else {
