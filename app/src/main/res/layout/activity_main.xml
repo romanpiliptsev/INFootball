@@ -10,83 +10,83 @@
         android:id="@+id/app_logo"
         android:layout_width="27dp"
         android:layout_height="27dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="3dp"
-        android:src="@drawable/infootball_logo"/>
+        android:src="@drawable/infootball_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/app_logo"
-        app:layout_constraintBottom_toBottomOf="@id/app_logo"
-        app:layout_constraintStart_toEndOf="@id/app_logo"
+        android:layout_marginStart="3dp"
         android:text="INFootball"
         android:textSize="21sp"
         android:textStyle="bold"
-        android:layout_marginStart="3dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/app_logo"
+        app:layout_constraintStart_toEndOf="@id/app_logo"
+        app:layout_constraintTop_toTopOf="@id/app_logo" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
+        android:name="com.example.infootball.presentation.fragments.MatchesFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="com.example.infootball.presentation.fragments.MatchesFragment"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/leagues"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_name"
-        app:layout_constraintBottom_toTopOf="@id/leagues"
-        tools:layout="@layout/fragment_matches"
-        android:layout_marginTop="8dp"/>
+        tools:layout="@layout/fragment_matches" />
 
     <TextView
         android:id="@+id/matches"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:gravity="center"
         android:text="Matches"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/lives"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"
-        android:background="@color/red"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_container" />
 
     <TextView
         android:id="@+id/lives"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Live"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/leagues"
         app:layout_constraintStart_toEndOf="@id/matches"
-        app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_container" />
 
     <TextView
         android:id="@+id/leagues"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Leagues"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/favorites"
         app:layout_constraintStart_toEndOf="@id/lives"
-        app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_container" />
 
     <TextView
         android:id="@+id/favorites"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Favorites"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/leagues"
-        app:layout_constraintTop_toBottomOf="@id/fragment_container"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

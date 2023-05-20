@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.TableFragment"
     android:isScrollContainer="true"
     android:measureAllChildren="true"
-    android:paddingTop="7dp">
+    android:paddingTop="7dp"
+    tools:context=".presentation.fragments.TableFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,24 +17,24 @@
             android:id="@+id/flag"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/league_logo"
-            app:layout_constraintTop_toTopOf="@id/league_logo"
+            android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="@id/league_logo"
-            tools:src="@drawable/whistle"
+            app:layout_constraintEnd_toStartOf="@id/league_logo"
             app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginEnd="10dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/league_logo"
+            tools:src="@drawable/whistle" />
 
         <ImageView
             android:id="@+id/league_logo"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            app:layout_constraintStart_toEndOf="@id/flag"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toStartOf="@id/league_name"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/whistle"
             app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginEnd="10dp"/>
+            app:layout_constraintStart_toEndOf="@id/flag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/whistle" />
 
         <TextView
             android:id="@+id/league_name"
@@ -42,31 +42,31 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold|italic"
-            tools:text="LA LIGA"
-            app:layout_constraintStart_toEndOf="@id/league_logo"
+            app:layout_constraintBottom_toBottomOf="@id/league_logo"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/league_logo"
             app:layout_constraintTop_toTopOf="@id/league_logo"
-            app:layout_constraintBottom_toBottomOf="@id/league_logo"/>
+            tools:text="LA LIGA" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/league_logo"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="5dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/league_logo" />
 
         <TextView
             android:id="@+id/text_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="#"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/gl1"
-            app:layout_constraintTop_toBottomOf="@id/spinner"
-            android:layout_marginTop="5dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl1"
@@ -88,8 +88,8 @@
             android:layout_height="wrap_content"
             android:text="Club"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl1.5"
             app:layout_constraintEnd_toStartOf="@id/gl2"
+            app:layout_constraintStart_toEndOf="@id/gl1.5"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -112,8 +112,8 @@
             android:layout_height="wrap_content"
             android:text="Gms"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl2"
             app:layout_constraintEnd_toStartOf="@id/gl3"
+            app:layout_constraintStart_toEndOf="@id/gl2"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -130,8 +130,8 @@
             android:text="W"
             android:textColor="@color/green"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl3"
             app:layout_constraintEnd_toStartOf="@id/gl4"
+            app:layout_constraintStart_toEndOf="@id/gl3"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -148,8 +148,8 @@
             android:text="D"
             android:textColor="@color/yellow"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl4"
             app:layout_constraintEnd_toStartOf="@id/gl5"
+            app:layout_constraintStart_toEndOf="@id/gl4"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -166,8 +166,8 @@
             android:text="L"
             android:textColor="@color/defeat_red"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl5"
             app:layout_constraintEnd_toStartOf="@id/gl6"
+            app:layout_constraintStart_toEndOf="@id/gl5"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -183,8 +183,8 @@
             android:layout_height="wrap_content"
             android:text="Diff"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl6"
             app:layout_constraintEnd_toStartOf="@id/gl7"
+            app:layout_constraintStart_toEndOf="@id/gl6"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -200,8 +200,8 @@
             android:layout_height="wrap_content"
             android:text="PTS"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/gl7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/gl7"
             app:layout_constraintTop_toTopOf="@id/text_position" />
 
         <View
@@ -210,8 +210,8 @@
             android:layout_height="2dp"
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toTopOf="@id/rv_table_items"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_position" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -219,8 +219,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_position" />
         <!--        app:layout_constraintTop_toBottomOf="@id/line" />-->
 
@@ -230,8 +230,8 @@
             android:layout_height="wrap_content"
             android:text="ERROR!!!"
             app:layout_constraintBottom_toTopOf="@id/retry_button"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinner"
             app:layout_constraintVertical_chainStyle="packed" />
 
@@ -262,8 +262,8 @@
             android:indeterminate="true"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Group

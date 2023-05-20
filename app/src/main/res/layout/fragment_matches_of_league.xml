@@ -1,71 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.MatchesOfLeagueFragment">
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="05.04"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:textSize="15sp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="05.04" />
 
     <ImageView
         android:id="@+id/league_logo"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/date"
-        tools:src="@drawable/ic_yellow_star"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"/>
+        tools:src="@drawable/ic_yellow_star" />
 
     <TextView
         android:id="@+id/league_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/league_logo"
+        android:layout_marginStart="4dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/flag"
         app:layout_constraintStart_toEndOf="@id/league_logo"
-        tools:text="La Liga"
-        android:layout_marginStart="4dp"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toTopOf="@id/league_logo"
+        tools:text="La Liga" />
 
     <ImageView
         android:id="@+id/flag"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/league_logo"
         app:layout_constraintStart_toEndOf="@id/league_logo"
         app:layout_constraintTop_toBottomOf="@id/league_name"
-        app:layout_constraintBottom_toBottomOf="@id/league_logo"
-        tools:src="@drawable/ic_yellow_star"
-        android:layout_marginStart="4dp"/>
+        tools:src="@drawable/ic_yellow_star" />
 
     <TextView
         android:id="@+id/country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/flag"
         app:layout_constraintStart_toEndOf="@id/flag"
         app:layout_constraintTop_toTopOf="@id/flag"
-        app:layout_constraintBottom_toBottomOf="@id/flag"
-        tools:text="Spain"
-        android:layout_marginStart="5dp"/>
+        tools:text="Spain" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_matches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/league_logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/league_logo" />
 
     <TextView
         android:id="@+id/error_message"

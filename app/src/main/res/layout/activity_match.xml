@@ -10,23 +10,23 @@
         android:id="@+id/app_logo"
         android:layout_width="27dp"
         android:layout_height="27dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="3dp"
-        android:src="@drawable/infootball_logo"/>
+        android:src="@drawable/infootball_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/app_logo"
-        app:layout_constraintBottom_toBottomOf="@id/app_logo"
-        app:layout_constraintStart_toEndOf="@id/app_logo"
+        android:layout_marginStart="3dp"
         android:text="INFootball"
         android:textSize="21sp"
         android:textStyle="bold"
-        android:layout_marginStart="3dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/app_logo"
+        app:layout_constraintStart_toEndOf="@id/app_logo"
+        app:layout_constraintTop_toTopOf="@id/app_logo" />
 
     <ImageView
         android:id="@+id/match_star"
@@ -44,24 +44,24 @@
         android:layout_width="48dp"
         android:layout_height="36dp"
         android:layout_marginStart="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/league_logo"
-        app:layout_constraintTop_toBottomOf="@id/app_name"
-        tools:src="@drawable/world_flag"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintEnd_toStartOf="@id/league_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
+        tools:src="@drawable/world_flag" />
 
     <ImageView
         android:id="@+id/league_logo"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="10dp"
-        app:layout_constraintTop_toBottomOf="@id/app_name"
-        app:layout_constraintStart_toEndOf="@id/flag"
-        app:layout_constraintEnd_toStartOf="@id/league_description"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@id/flag"
-        tools:src="@drawable/ic_yellow_star"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintEnd_toStartOf="@id/league_description"
+        app:layout_constraintStart_toEndOf="@id/flag"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
+        tools:src="@drawable/ic_yellow_star" />
 
     <TextView
         android:id="@+id/league_description"
@@ -159,11 +159,11 @@
         android:id="@+id/date_and_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flag"
-        android:layout_marginTop="3dp"
         tools:text="04.04.2023 21:45" />
 
     <TextView

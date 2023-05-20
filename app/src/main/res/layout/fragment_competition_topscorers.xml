@@ -10,12 +10,12 @@
         android:id="@+id/topscorer_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="№"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/gl0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="№" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl0"
@@ -29,13 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:text="NAME"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
         app:layout_constraintEnd_toStartOf="@id/gl1"
         app:layout_constraintStart_toEndOf="@id/gl0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
-        android:text="NAME" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl1"
@@ -48,51 +48,50 @@
         android:id="@+id/matches"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@drawable/ic_shirt"
+        app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
         app:layout_constraintEnd_toStartOf="@id/goals"
         app:layout_constraintStart_toEndOf="@id/gl1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
-        android:src="@drawable/ic_shirt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/goals"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@drawable/ic_football_svgrepo_com"
         app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
         app:layout_constraintEnd_toStartOf="@id/pen_goals"
         app:layout_constraintStart_toEndOf="@id/matches"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_football_svgrepo_com" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/pen_goals"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@drawable/pen"
         app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
         app:layout_constraintEnd_toStartOf="@id/assists"
         app:layout_constraintStart_toEndOf="@id/goals"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/pen" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/assists"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@drawable/boot"
         app:layout_constraintBottom_toBottomOf="@id/topscorer_position"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/pen_goals"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/boot" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_topscorers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/topscorer_position"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:paddingBottom="40dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topscorer_position" />
 
     <TextView
         android:id="@+id/error_message"
@@ -100,9 +99,9 @@
         android:layout_height="wrap_content"
         android:text="ERROR!!!"
         app:layout_constraintBottom_toTopOf="@id/retry_button"
-        app:layout_constraintTop_toBottomOf="@id/topscorer_position"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topscorer_position"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
@@ -112,8 +111,8 @@
         android:text="RETRY"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/error_message"
         app:layout_constraintVertical_chainStyle="packed" />
 
