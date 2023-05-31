@@ -1,19 +1,19 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.domain.usecases.GetAllFavoriteMatchesUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoriteMatchesViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val getFavoriteMatchesUseCase = GetAllFavoriteMatchesUseCase(application)
+class FavoriteMatchesViewModel @Inject constructor(private val getFavoriteMatchesUseCase: GetAllFavoriteMatchesUseCase) :
+    ViewModel() {
 
     private val _getFavoriteMatchesStateLiveData = MutableLiveData<GetFavoriteMatchesState>()
     val getFavoriteMatchesStateLiveData: LiveData<GetFavoriteMatchesState>
@@ -25,8 +25,9 @@ class FavoriteMatchesViewModel(application: Application) : AndroidViewModel(appl
         class Loaded(val matches: ArrayList<MatchDto>) : GetFavoriteMatchesState
     }
 
-    private val getFavoriteMatchesHandler = CoroutineExceptionHandler { _, _ ->
+    private val getFavoriteMatchesHandler = CoroutineExceptionHandler { _, th ->
         _getFavoriteMatchesStateLiveData.postValue(GetFavoriteMatchesState.Error)
+        Log.e("VM throw", th.toString())
     }
 
     fun getFavoriteMatches() {

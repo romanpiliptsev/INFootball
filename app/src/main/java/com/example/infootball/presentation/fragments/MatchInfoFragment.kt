@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.infootball.InfootballApp
 import com.example.infootball.databinding.FragmentMatchInfoBinding
 
 private const val ARG_VENUE = "param_venue"
 private const val ARG_REFEREES = "param_referees"
 
 class MatchInfoFragment : Fragment() {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramVenue: String? = null
     private var paramReferees: ArrayList<String>? = null
@@ -20,6 +25,7 @@ class MatchInfoFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramVenue = it.getString(ARG_VENUE)

@@ -5,20 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.databinding.FragmentMatchesBinding
 import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.LeaguesOfMatchesAdapter
 import com.example.infootball.presentation.viewmodels.LeaguesOfMatchesViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import java.time.LocalDate
+import javax.inject.Inject
 
 class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private val binding by lazy {
         FragmentMatchesBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: LeaguesOfMatchesViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvLeagues by lazy {
@@ -27,6 +41,11 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
 
     private lateinit var leagueList: List<LeagueOfMatchesEntity>
     private lateinit var date: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +56,6 @@ class MatchesFragment : Fragment(), LeaguesOfMatchesAdapter.OnRvItemClickListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[LeaguesOfMatchesViewModel::class.java]
 
         date = LocalDate.now().toString()
         binding.today.text = LocalDate.now().toString()

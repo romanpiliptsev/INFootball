@@ -7,8 +7,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.ActivityMatchBinding
@@ -17,25 +18,43 @@ import com.example.infootball.presentation.fragments.MatchInfoFragment
 import com.example.infootball.presentation.fragments.TableFragment
 import com.example.infootball.presentation.viewmodels.DbViewModel
 import com.example.infootball.presentation.viewmodels.MatchViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class MatchActivity : AppCompatActivity() {
 
+    private val component by lazy {
+        (application as InfootballApp).component
+    }
+
     private val binding by lazy {
         ActivityMatchBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: MatchViewModel by viewModels {
+        viewModelFactory
+    }
+
+    private val dbVm: DbViewModel by viewModels {
+        viewModelFactory
     }
 
     private lateinit var match: MatchDto
     private var isFav: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         val matchId = intent.getIntExtra(EXTRA_MATCH_ID, -1)
 
-        val dbVm = ViewModelProvider(this)[DbViewModel::class.java]
         dbVm.isFavoriteMatch(matchId)
         dbVm.getIsFavoriteMatchLiveData.observe(this) {
             isFav = it
@@ -57,9 +76,7 @@ class MatchActivity : AppCompatActivity() {
             isFav = !isFav
         }
 
-        val vm = ViewModelProvider(this)[MatchViewModel::class.java]
         vm.getMatch(matchId)
-
         vm.getMatchStateLiveData.observe(this) {
             when (it) {
                 is MatchViewModel.GetMatchState.Error -> {

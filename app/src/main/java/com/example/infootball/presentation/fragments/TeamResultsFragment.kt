@@ -5,22 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentTeamResultsBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
 import com.example.infootball.presentation.viewmodels.TeamResultsViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 private const val ARG_PARAM_TEAM_ID = "param_team_id"
 
 class TeamResultsFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private var paramTeamId: Int? = null
 
     private val binding by lazy {
         FragmentTeamResultsBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: TeamResultsViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvMatches by lazy {
@@ -30,6 +44,7 @@ class TeamResultsFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickL
     private lateinit var matchesList: List<MatchDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramTeamId = it.getInt(ARG_PARAM_TEAM_ID)
@@ -45,8 +60,6 @@ class TeamResultsFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[TeamResultsViewModel::class.java]
 
         val adapter = ResultsAndCalendarAdapter(this)
         rvMatches.adapter = adapter

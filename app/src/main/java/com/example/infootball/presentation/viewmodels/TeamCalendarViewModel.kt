@@ -1,17 +1,18 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.domain.usecases.GetTeamCalendarUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TeamCalendarViewModel(application: Application) : AndroidViewModel(application) {
-    private val getTeamCalendarUseCase = GetTeamCalendarUseCase(application)
+class TeamCalendarViewModel @Inject constructor(private val getTeamCalendarUseCase: GetTeamCalendarUseCase) :
+    ViewModel() {
 
     private val _getTeamCalendarStateLiveData = MutableLiveData<GetTeamCalendarState>()
     val getTeamCalendarStateLiveData: LiveData<GetTeamCalendarState>
@@ -23,8 +24,9 @@ class TeamCalendarViewModel(application: Application) : AndroidViewModel(applica
         class Loaded(val matches: ArrayList<MatchDto>) : GetTeamCalendarState
     }
 
-    private val getTeamCalendarHandler = CoroutineExceptionHandler { _, _ ->
+    private val getTeamCalendarHandler = CoroutineExceptionHandler { _, th ->
         _getTeamCalendarStateLiveData.value = GetTeamCalendarState.Error
+        Log.e("VM throw", th.toString())
     }
 
     fun getTeamCalendar(teamId: Int) {

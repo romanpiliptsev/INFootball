@@ -1,18 +1,18 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.data.network.model.TopscorerDto
 import com.example.infootball.domain.usecases.GetCompetitionTopscorersUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CompetitionTopscorersViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val getTopscorersUseCase = GetCompetitionTopscorersUseCase(application)
+class CompetitionTopscorersViewModel @Inject constructor(private val getTopscorersUseCase: GetCompetitionTopscorersUseCase) :
+    ViewModel() {
 
     private val _getTopscorersStateLiveData = MutableLiveData<GetTopscorersState>()
     val getTopscorersStateLiveData: LiveData<GetTopscorersState>
@@ -24,8 +24,9 @@ class CompetitionTopscorersViewModel(application: Application) : AndroidViewMode
         class Loaded(val topscorers: ArrayList<TopscorerDto>) : GetTopscorersState
     }
 
-    private val getTopscorersListHandler = CoroutineExceptionHandler { _, _ ->
+    private val getTopscorersListHandler = CoroutineExceptionHandler { _, th ->
         _getTopscorersStateLiveData.value = GetTopscorersState.Error
+        Log.e("VM throw", th.toString())
     }
 
     fun getTopscorerList(leagueCode: String, season: String, limit: Int) {

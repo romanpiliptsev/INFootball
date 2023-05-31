@@ -5,18 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.CompetitionWithAreaDto
 import com.example.infootball.databinding.FragmentLeaguesBinding
 import com.example.infootball.presentation.activities.MainActivity
 import com.example.infootball.presentation.adapters.CompetitionsAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionsViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private val binding by lazy {
         FragmentLeaguesBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: CompetitionsViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvCompetitions by lazy {
@@ -24,6 +38,11 @@ class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
     }
 
     private lateinit var competitionList: List<CompetitionWithAreaDto>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +53,6 @@ class LeaguesFragment : Fragment(), CompetitionsAdapter.OnRvItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[CompetitionsViewModel::class.java]
 
         val adapter = CompetitionsAdapter(this)
         rvCompetitions.adapter = adapter

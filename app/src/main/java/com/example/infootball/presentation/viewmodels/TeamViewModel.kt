@@ -1,17 +1,18 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.domain.entities.ExtendedTeamEntity
 import com.example.infootball.domain.usecases.GetTeamByIdUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TeamViewModel(application: Application) : AndroidViewModel(application) {
-    private val getTeamUseCase = GetTeamByIdUseCase(application)
+class TeamViewModel @Inject constructor(private val getTeamUseCase: GetTeamByIdUseCase) :
+    ViewModel() {
 
     private val _getTeamStateLiveData = MutableLiveData<GetTeamState>()
     val getTeamStateLiveData: LiveData<GetTeamState>
@@ -23,8 +24,9 @@ class TeamViewModel(application: Application) : AndroidViewModel(application) {
         class Loaded(val team: ExtendedTeamEntity) : GetTeamState
     }
 
-    private val getTeamHandler = CoroutineExceptionHandler { _, _ ->
+    private val getTeamHandler = CoroutineExceptionHandler { _, th ->
         _getTeamStateLiveData.value = GetTeamState.Error
+        Log.e("VM throw", th.toString())
     }
 
     fun getTeam(teamId: Int) {

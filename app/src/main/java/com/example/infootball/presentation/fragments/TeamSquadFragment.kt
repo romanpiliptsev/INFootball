@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.PlayerOfTeamDto
 import com.example.infootball.databinding.FragmentTeamSquadBinding
 import com.example.infootball.presentation.adapters.PlayersAdapter
@@ -13,6 +14,10 @@ import com.example.infootball.presentation.adapters.PlayersAdapter
 private const val ARG_PARAM_PLAYERS = "param_players"
 
 class TeamSquadFragment : Fragment() {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramPlayers: ArrayList<PlayerOfTeamDto>? = null
 
@@ -25,6 +30,7 @@ class TeamSquadFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramPlayers = it.getParcelableArrayList(ARG_PARAM_PLAYERS)

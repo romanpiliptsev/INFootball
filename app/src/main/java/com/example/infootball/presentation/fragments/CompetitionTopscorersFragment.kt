@@ -5,23 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.TopscorerDto
 import com.example.infootball.databinding.FragmentCompetitionTopscorersBinding
 import com.example.infootball.presentation.adapters.TopscorersAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionTopscorersViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"
 
 class CompetitionTopscorersFragment : Fragment() {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private var paramLeagueCode: String? = null
     private var paramSeason: String? = null
 
     private val binding by lazy {
         FragmentCompetitionTopscorersBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: CompetitionTopscorersViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvTopscorers by lazy {
@@ -31,6 +45,7 @@ class CompetitionTopscorersFragment : Fragment() {
     private lateinit var topscorers: ArrayList<TopscorerDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramLeagueCode = it.getString(ARG_PARAM_LEAGUE_CODE)
@@ -47,8 +62,6 @@ class CompetitionTopscorersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[CompetitionTopscorersViewModel::class.java]
 
         val adapter = TopscorersAdapter()
         rvTopscorers.adapter = adapter

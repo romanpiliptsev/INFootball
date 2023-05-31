@@ -8,27 +8,41 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.data.network.model.StandingsResponseDto
 import com.example.infootball.databinding.FragmentTableBinding
 import com.example.infootball.presentation.activities.TeamActivity
 import com.example.infootball.presentation.adapters.TableAdapter
 import com.example.infootball.presentation.viewmodels.StandingsViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"
 
 class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private var paramLeagueCode: String? = null
     private var paramSeason: String? = null
 
     private val binding by lazy {
         FragmentTableBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: StandingsViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvTableItems by lazy {
@@ -40,6 +54,7 @@ class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
     private var currentStandings: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramLeagueCode = it.getString(ARG_PARAM_LEAGUE_CODE)
@@ -56,8 +71,6 @@ class TableFragment : Fragment(), TableAdapter.OnRvItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[StandingsViewModel::class.java]
 
         val adapter = TableAdapter(this)
         rvTableItems.adapter = adapter

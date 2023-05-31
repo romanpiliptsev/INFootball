@@ -5,17 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.databinding.ActivityMainBinding
 import com.example.infootball.presentation.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val component by lazy {
+        (application as InfootballApp).component
+    }
+
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 

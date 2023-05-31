@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.infootball.InfootballApp
 import com.example.infootball.databinding.FragmentTeamInfoBinding
 
 private const val ARG_PARAM_ADDRESS = "param_address"
@@ -14,6 +15,10 @@ private const val ARG_PARAM_COLORS = "param_colors"
 private const val ARG_PARAM_VENUE = "param_venue"
 
 class TeamInfoFragment : Fragment() {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramAddress: String? = null
     private var paramWebsite: String? = null
@@ -26,6 +31,7 @@ class TeamInfoFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramAddress = it.getString(ARG_PARAM_ADDRESS)

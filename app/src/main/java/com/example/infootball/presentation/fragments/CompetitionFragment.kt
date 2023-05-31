@@ -9,16 +9,23 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.databinding.FragmentCompetitionBinding
 import com.example.infootball.presentation.viewmodels.CompetitionViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 private const val ARG_PARAM_COMPETITION_CODE = "param_competition_code"
 
 class CompetitionFragment : Fragment() {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramCompetitionCode: String? = null
 
@@ -26,10 +33,18 @@ class CompetitionFragment : Fragment() {
         FragmentCompetitionBinding.inflate(layoutInflater)
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: CompetitionViewModel by viewModels {
+        viewModelFactory
+    }
+
     private var season: String = "2022"
     private var currentFragment: String = TABLE_FRAGMENT
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramCompetitionCode = it.getString(ARG_PARAM_COMPETITION_CODE)
@@ -45,8 +60,6 @@ class CompetitionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[CompetitionViewModel::class.java]
 
         vm.getCompetition(paramCompetitionCode ?: "")
 

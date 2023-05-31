@@ -13,10 +13,8 @@ import com.example.infootball.databinding.H2hMatchItemBinding
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
 
-class H2HMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
+class H2HMatchesAdapter(private val onRvItemClickListener: OnRvItemClickListener) :
     ListAdapter<MatchDtoForH2H, H2HMatchesAdapter.MatchesViewHolder>(DiffCallback()) {
-
-    private val listener: OnRvItemClickListener = onRvItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesViewHolder {
         val view =
@@ -75,7 +73,7 @@ class H2HMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onRvItemClick(adapterPosition)
+            onRvItemClickListener.onRvItemClick(adapterPosition)
         }
     }
 

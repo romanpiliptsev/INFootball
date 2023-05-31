@@ -13,10 +13,8 @@ import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
 
-class LeaguesOfMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
+class LeaguesOfMatchesAdapter(private val onRvItemClickListener: OnRvItemClickListener) :
     ListAdapter<LeagueOfMatchesEntity, LeaguesOfMatchesAdapter.LeagueViewHolder>(DiffCallback()) {
-
-    private val listener: OnRvItemClickListener = onRvItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueViewHolder {
         val view =
@@ -63,7 +61,7 @@ class LeaguesOfMatchesAdapter(onRvItemClickListener: OnRvItemClickListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onRvItemClick(adapterPosition)
+            onRvItemClickListener.onRvItemClick(adapterPosition)
         }
     }
 

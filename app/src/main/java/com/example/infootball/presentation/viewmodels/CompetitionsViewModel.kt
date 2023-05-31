@@ -1,18 +1,18 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.data.network.model.CompetitionWithAreaDto
 import com.example.infootball.domain.usecases.GetCompetitionsUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CompetitionsViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val getCompetitionsUseCase = GetCompetitionsUseCase(application)
+class CompetitionsViewModel @Inject constructor(private val getCompetitionsUseCase: GetCompetitionsUseCase) :
+    ViewModel() {
 
     private val _getCompetitionsStateLiveData = MutableLiveData<GetCompetitionsState>()
     val getCompetitionsStateLiveData: LiveData<GetCompetitionsState>
@@ -24,8 +24,9 @@ class CompetitionsViewModel(application: Application) : AndroidViewModel(applica
         class Loaded(val competitions: ArrayList<CompetitionWithAreaDto>) : GetCompetitionsState
     }
 
-    private val getCompetitionsHandler = CoroutineExceptionHandler { _, _ ->
+    private val getCompetitionsHandler = CoroutineExceptionHandler { _, th ->
         _getCompetitionsStateLiveData.value = GetCompetitionsState.Error
+        Log.e("VM throw", th.toString())
     }
 
     fun getCompetitions() {

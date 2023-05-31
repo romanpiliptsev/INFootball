@@ -6,22 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.data.network.model.H2HDto
 import com.example.infootball.databinding.FragmentH2HBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.H2HMatchesAdapter
 import com.example.infootball.presentation.viewmodels.H2HViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 private const val ARG_PARAM_MATCH_ID = "param_match_id"
 private const val ARG_PARAM_HOME_TEAM_EMBLEM_LINK = "param_home_team_emblem_link"
 private const val ARG_PARAM_AWAY_TEAM_EMBLEM_LINK = "param_away_team_emblem_link"
 
 class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramMatchId: Int? = null
     private var paramHomeTeamEmblemLink: String? = null
@@ -31,6 +38,13 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
         FragmentH2HBinding.inflate(layoutInflater)
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: H2HViewModel by viewModels {
+        viewModelFactory
+    }
+
     private val rvMatches by lazy {
         binding.rvMatches
     }
@@ -38,6 +52,7 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
     private lateinit var h2h: H2HDto
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramMatchId = it.getInt(ARG_PARAM_MATCH_ID, -1)
@@ -55,8 +70,6 @@ class H2HFragment : Fragment(), H2HMatchesAdapter.OnRvItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[H2HViewModel::class.java]
 
         val adapter = H2HMatchesAdapter(this)
         rvMatches.adapter = adapter

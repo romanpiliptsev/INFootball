@@ -1,21 +1,21 @@
 package com.example.infootball.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infootball.domain.usecases.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DbViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val addFavoriteMatchUseCase = AddFavoriteMatchUseCase(application)
-    private val addFavoriteTeamUseCase = AddFavoriteTeamUseCase(application)
-    private val deleteFavoriteMatchUseCase = DeleteFavoriteMatchUseCase(application)
-    private val deleteFavoriteTeamUseCase = DeleteFavoriteTeamUseCase(application)
-    private val getIsFavoriteMatchUseCase = GetIsFavoriteMatchUseCase(application)
-    private val getIsFavoriteTeamUseCase = GetIsFavoriteTeamUseCase(application)
+class DbViewModel @Inject constructor(
+    private val addFavoriteMatchUseCase: AddFavoriteMatchUseCase,
+    private val addFavoriteTeamUseCase: AddFavoriteTeamUseCase,
+    private val deleteFavoriteMatchUseCase: DeleteFavoriteMatchUseCase,
+    private val deleteFavoriteTeamUseCase: DeleteFavoriteTeamUseCase,
+    private val getIsFavoriteMatchUseCase: GetIsFavoriteMatchUseCase,
+    private val getIsFavoriteTeamUseCase: GetIsFavoriteTeamUseCase
+) : ViewModel() {
 
     private val _getIsFavoriteMatchLiveData = MutableLiveData<Boolean>()
     val getIsFavoriteMatchLiveData: LiveData<Boolean>

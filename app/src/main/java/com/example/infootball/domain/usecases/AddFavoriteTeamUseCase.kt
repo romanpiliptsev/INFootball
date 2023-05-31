@@ -1,11 +1,9 @@
 package com.example.infootball.domain.usecases
 
-import android.app.Application
-import com.example.infootball.data.repository.MainRepositoryImpl
 import com.example.infootball.domain.repositories.MainRepository
+import javax.inject.Inject
 
-class AddFavoriteTeamUseCase(application: Application) {
-    private val repository: MainRepository = MainRepositoryImpl(application)
+class AddFavoriteTeamUseCase @Inject constructor(private val repository: MainRepository) {
 
     suspend operator fun invoke(teamId: Int) =
         repository.addTeamItem(teamId)

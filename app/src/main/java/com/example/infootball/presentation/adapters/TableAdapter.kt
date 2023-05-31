@@ -13,10 +13,8 @@ import com.example.infootball.databinding.TableItemBinding
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
 
-class TableAdapter(onRvItemClickListener: OnRvItemClickListener) :
+class TableAdapter(private val onRvItemClickListener: OnRvItemClickListener) :
     ListAdapter<TablePositionDto, TableAdapter.TableViewHolder>(DiffCallback()) {
-
-    private val listener: OnRvItemClickListener = onRvItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableViewHolder {
         val view =
@@ -55,7 +53,7 @@ class TableAdapter(onRvItemClickListener: OnRvItemClickListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onRvItemClick(adapterPosition)
+            onRvItemClickListener.onRvItemClick(adapterPosition)
         }
     }
 

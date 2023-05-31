@@ -6,27 +6,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentMatchesOfLeagueBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.LiveOrLeagueMatchesAdapter
 import com.example.infootball.presentation.viewmodels.MatchesOfLeagueViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 private const val ARG_COMPETITION = "competition"
 private const val ARG_DATE = "date"
 
 class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private var paramCompetition: String? = null
     private var paramDate: String? = null
 
     private val binding by lazy {
         FragmentMatchesOfLeagueBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: MatchesOfLeagueViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvMatches by lazy {
@@ -36,6 +50,7 @@ class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemC
     private lateinit var matchesList: List<MatchDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramCompetition = it.getString(ARG_COMPETITION)
@@ -52,8 +67,6 @@ class MatchesOfLeagueFragment : Fragment(), LiveOrLeagueMatchesAdapter.OnRvItemC
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[MatchesOfLeagueViewModel::class.java]
 
         val adapter = LiveOrLeagueMatchesAdapter(this)
         rvMatches.adapter = adapter

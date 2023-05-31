@@ -5,18 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentFavoritesBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
 import com.example.infootball.presentation.viewmodels.FavoriteMatchesViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickListener {
 
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
+
     private val binding by lazy {
         FragmentFavoritesBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: FavoriteMatchesViewModel by viewModels {
+        viewModelFactory
     }
 
     private val rvMatches by lazy {
@@ -24,6 +38,11 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
     }
 
     private lateinit var matches: ArrayList<MatchDto>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +58,6 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
         rvMatches.adapter = adapter
         rvMatches.layoutManager = LinearLayoutManager(requireContext())
 
-        val vm = ViewModelProvider(this)[FavoriteMatchesViewModel::class.java]
         vm.getFavoriteMatches()
 
         vm.getFavoriteMatchesStateLiveData.observe(viewLifecycleOwner) {

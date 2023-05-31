@@ -1,12 +1,9 @@
 package com.example.infootball.data.repository
 
-import android.app.Application
-import com.example.infootball.data.database.AppDatabase
 import com.example.infootball.data.database.dao.MatchListDao
 import com.example.infootball.data.database.dao.TeamListDao
 import com.example.infootball.data.database.db_model.MatchDbModel
 import com.example.infootball.data.database.db_model.TeamDbModel
-import com.example.infootball.data.network.ApiFactory
 import com.example.infootball.data.network.ApiService
 import com.example.infootball.data.network.model.*
 import com.example.infootball.domain.entities.ExtendedTeamEntity
@@ -14,13 +11,13 @@ import com.example.infootball.domain.entities.LeagueOfMatchesEntity
 import com.example.infootball.domain.repositories.MainRepository
 import java.time.LocalDate
 import java.util.*
+import javax.inject.Inject
 
-class MainRepositoryImpl(application: Application) : MainRepository {
-
-    private val apiService = ApiFactory.apiService
-    private val appDb = AppDatabase.getInstance(application)
-    private val matchListDao: MatchListDao = appDb.matchListDao()
-    private val teamListDao: TeamListDao = appDb.teamListDao()
+class MainRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val matchListDao: MatchListDao,
+    private val teamListDao: TeamListDao
+) : MainRepository {
 
     override suspend fun getMatchesOfLeagueDay(
         competition: String,

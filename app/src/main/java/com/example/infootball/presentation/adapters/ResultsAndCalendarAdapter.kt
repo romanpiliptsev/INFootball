@@ -13,10 +13,8 @@ import com.example.infootball.databinding.MatchItemBinding
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
 
-class ResultsAndCalendarAdapter(onRvItemClickListener: OnRvItemClickListener) :
+class ResultsAndCalendarAdapter(private val onRvItemClickListener: OnRvItemClickListener) :
     ListAdapter<MatchDto, ResultsAndCalendarAdapter.MatchesViewHolder>(DiffCallback()) {
-
-    private val listener: OnRvItemClickListener = onRvItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesViewHolder {
         val view =
@@ -75,7 +73,7 @@ class ResultsAndCalendarAdapter(onRvItemClickListener: OnRvItemClickListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onRvItemClick(adapterPosition)
+            onRvItemClickListener.onRvItemClick(adapterPosition)
         }
     }
 

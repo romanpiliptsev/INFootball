@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infootball.InfootballApp
 import com.example.infootball.data.network.model.MatchDto
 import com.example.infootball.databinding.FragmentCompetitionResultsOrCalendarBinding
 import com.example.infootball.presentation.activities.MatchActivity
 import com.example.infootball.presentation.adapters.ResultsAndCalendarAdapter
 import com.example.infootball.presentation.viewmodels.CompetitionMatchesViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 private const val ARG_PARAM_LEAGUE_CODE = "param_league_code"
 private const val ARG_PARAM_SEASON = "param_season"
@@ -19,6 +22,10 @@ private const val ARG_PARAM_IS_RESULTS = "param_is_results"
 
 class CompetitionResultsOrCalendarFragment : Fragment(),
     ResultsAndCalendarAdapter.OnRvItemClickListener {
+
+    private val component by lazy {
+        (activity?.application as InfootballApp).component
+    }
 
     private var paramLeagueCode: String? = null
     private var paramSeason: String? = null
@@ -28,6 +35,13 @@ class CompetitionResultsOrCalendarFragment : Fragment(),
         FragmentCompetitionResultsOrCalendarBinding.inflate(layoutInflater)
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: CompetitionMatchesViewModel by viewModels {
+        viewModelFactory
+    }
+
     private val rvMatches by lazy {
         binding.rvMatches
     }
@@ -35,6 +49,7 @@ class CompetitionResultsOrCalendarFragment : Fragment(),
     private lateinit var matches: ArrayList<MatchDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         arguments?.let {
             paramLeagueCode = it.getString(ARG_PARAM_LEAGUE_CODE)
@@ -52,8 +67,6 @@ class CompetitionResultsOrCalendarFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val vm = ViewModelProvider(this)[CompetitionMatchesViewModel::class.java]
 
         val adapter = ResultsAndCalendarAdapter(this)
         rvMatches.adapter = adapter

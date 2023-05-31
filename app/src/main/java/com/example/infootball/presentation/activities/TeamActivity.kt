@@ -8,8 +8,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.infootball.InfootballApp
 import com.example.infootball.R
 import com.example.infootball.data.network.model.PlayerOfTeamDto
 import com.example.infootball.databinding.ActivityTeamBinding
@@ -17,25 +18,43 @@ import com.example.infootball.domain.entities.ExtendedTeamEntity
 import com.example.infootball.presentation.fragments.*
 import com.example.infootball.presentation.viewmodels.DbViewModel
 import com.example.infootball.presentation.viewmodels.TeamViewModel
+import com.example.infootball.presentation.viewmodels.ViewModelFactory
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class TeamActivity : AppCompatActivity() {
 
+    private val component by lazy {
+        (application as InfootballApp).component
+    }
+
     private val binding by lazy {
         ActivityTeamBinding.inflate(layoutInflater)
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val vm: TeamViewModel by viewModels {
+        viewModelFactory
+    }
+
+    private val dbVm: DbViewModel by viewModels {
+        viewModelFactory
     }
 
     private lateinit var team: ExtendedTeamEntity
     private var isFav: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         val teamId = intent.getIntExtra(EXTRA_TEAM_ID, -1)
 
-        val dbVm = ViewModelProvider(this)[DbViewModel::class.java]
         dbVm.isFavoriteTeam(teamId)
         dbVm.getIsFavoriteTeamLiveData.observe(this) {
             isFav = it
@@ -57,9 +76,7 @@ class TeamActivity : AppCompatActivity() {
             isFav = !isFav
         }
 
-        val vm = TeamViewModel(application)
         vm.getTeam(teamId)
-
         vm.getTeamStateLiveData.observe(this) {
             when (it) {
                 is TeamViewModel.GetTeamState.Error -> {
