@@ -37,7 +37,7 @@ class TableAdapter(private val onRvItemClickListener: OnRvItemClickListener) :
             difference.text = tablePosition.goalDifference.toString()
             games.text = tablePosition.playedGames.toString()
             points.text = tablePosition.points.toString()
-            name.text = tablePosition.team?.name
+            name.text = tablePosition.team?.shortName
 
             if (tablePosition.team?.crest?.endsWith(".png") == true) {
                 Picasso.get().load(tablePosition.team?.crest ?: "")

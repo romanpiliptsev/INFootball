@@ -58,8 +58,6 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
         rvMatches.adapter = adapter
         rvMatches.layoutManager = LinearLayoutManager(requireContext())
 
-        vm.getFavoriteMatches()
-
         vm.getFavoriteMatchesStateLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is FavoriteMatchesViewModel.GetFavoriteMatchesState.Error -> {
@@ -93,6 +91,11 @@ class FavoritesFragment : Fragment(), ResultsAndCalendarAdapter.OnRvItemClickLis
         binding.retryButton.setOnClickListener {
             vm.getFavoriteMatches()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vm.getFavoriteMatches()
     }
 
     override fun onRvItemClick(position: Int) {
