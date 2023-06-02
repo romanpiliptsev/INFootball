@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/gl1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gl1"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
 
@@ -28,8 +28,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl1"
-        app:layout_constraintRight_toLeftOf="@id/gl1.5"
+        app:layout_constraintStart_toEndOf="@id/gl1"
+        app:layout_constraintEnd_toStartOf="@id/gl1.5"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/whistle" />
 
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl1.5"
-        app:layout_constraintRight_toLeftOf="@id/gl2"
+        app:layout_constraintStart_toEndOf="@id/gl1.5"
+        app:layout_constraintEnd_toStartOf="@id/gl2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="FC Barcelona" />
 
@@ -63,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl2"
-        app:layout_constraintRight_toLeftOf="@id/gl3"
+        app:layout_constraintStart_toEndOf="@id/gl2"
+        app:layout_constraintEnd_toStartOf="@id/gl3"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="35" />
 
@@ -82,8 +82,8 @@
         android:textColor="@color/green"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl3"
-        app:layout_constraintRight_toLeftOf="@id/gl4"
+        app:layout_constraintStart_toEndOf="@id/gl3"
+        app:layout_constraintEnd_toStartOf="@id/gl4"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="30" />
 
@@ -101,8 +101,8 @@
         android:textColor="@color/yellow"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl4"
-        app:layout_constraintRight_toLeftOf="@id/gl5"
+        app:layout_constraintStart_toEndOf="@id/gl4"
+        app:layout_constraintEnd_toStartOf="@id/gl5"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="3" />
 
@@ -120,8 +120,8 @@
         android:textColor="@color/defeat_red"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl5"
-        app:layout_constraintRight_toLeftOf="@id/gl6"
+        app:layout_constraintStart_toEndOf="@id/gl5"
+        app:layout_constraintEnd_toStartOf="@id/gl6"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2" />
 
@@ -137,8 +137,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl6"
-        app:layout_constraintRight_toLeftOf="@id/gl7"
+        app:layout_constraintStart_toEndOf="@id/gl6"
+        app:layout_constraintEnd_toStartOf="@id/gl7"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="+77" />
 
@@ -154,8 +154,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/gl7"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gl7"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="102" />
 
